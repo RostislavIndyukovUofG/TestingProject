@@ -7,6 +7,7 @@ class Main:
     product_file_path = "../../resources/gameData.csv"
     input_type = None
     game_data = []
+    header = []
 
     def __init__(self, input_type):
         self.input_type = input_type
@@ -17,7 +18,10 @@ class Main:
     def setGameData(self, game_data):
         self.game_data = game_data
 
-    def getFileData(self):
+    def setHeader(self, header):
+        self.header = header
+
+    def readFileData(self):
         file_data = self.input_type.getFileData(self.product_file_path)
         return file_data
 
@@ -26,19 +30,30 @@ class Main:
             game_id = row[0]
             game_name = row[1]
             price = row[2]
-            age_rating = row[3]
-            platform = row[4]
-            temp_game = Game(game_id, game_name, price, age_rating, platform)
+            platform = row[3]
+            stock = row[4]
+            temp_game = Game(game_id, game_name, price, platform, stock)
             self.game_data.append(temp_game)
+
+    def displayGameData(self):
+        for game in self.game_data:
+            print(game)
+
+    def displayInitialMessage(self):
+        print("Welcome to the Game Store.")
+        print("The current games in stock are:")
+        print()
+        print(self.header[0] + "\t" + self.header[1])
+        self.displayGameData()
+        print()
 
 
 def main():
     main = Main(DataInputFile())
-    file_data = main.getFileData()
+    file_data = main.readFileData()
+    main.setHeader(file_data[0])
     main.mapFileDataToGameData(file_data)
-
-    displayWelcomeMessage()
-    displayGameData()
+    main.displayInitialMessage()
     user_command_string = getUserCommands()
     handleCommand()
 
