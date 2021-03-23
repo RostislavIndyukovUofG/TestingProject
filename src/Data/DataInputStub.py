@@ -1,4 +1,4 @@
-from IDataInput import IDataInput
+from src.Data.IDataInput import IDataInput
 
 class DataInputStub(IDataInput):
 

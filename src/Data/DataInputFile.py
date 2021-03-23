@@ -1,5 +1,5 @@
 import csv
-from IDataInput import IDataInput
+from src.Data.IDataInput import IDataInput
 
 class DataInputFile(IDataInput):
 

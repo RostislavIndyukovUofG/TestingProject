@@ -3,5 +3,5 @@ from abc import ABC, abstractmethod
 class IDataInput(ABC):
     
     @abstractmethod
-    def getRawData(self):
+    def getFileData(self):
         pass
