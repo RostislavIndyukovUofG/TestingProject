@@ -2,15 +2,18 @@ class Game:
     game_id = None
     game_name = None
     price = None
-    age_rating = None
     platform = None
+    stock = None
 
-    def __init__(self, game_id, game_name, price, age_rating, platform):
+    def __init__(self, game_id, game_name, price, platform, stock):
         self.game_id = game_id
         self.game_name = game_name
         self.price = price
-        self.age_rating = age_rating
         self.platform = platform
+        self.stock = stock
+
+    def __str__(self):
+        return self.game_id + "\t\t" + self.game_name
 
     def getGameID(self):
         return self.game_id
@@ -21,8 +24,8 @@ class Game:
     def getPrice(self):
         return self.price
 
-    def getAgeRating(self):
-        return self.age_rating
-
     def getPlatform(self):
         return self.platform
+
+    def getStock(self):
+        return self.stock
