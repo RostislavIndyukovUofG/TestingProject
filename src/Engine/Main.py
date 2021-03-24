@@ -8,12 +8,18 @@ class Main:
     input_type = None
     game_data = []
     header = []
+    commands = {"list": "view stock",
+                "view [game ID]": "view the selected game details",
+                "add [game ID]": "add selected game to basket",
+                "basket": "view basket",
+                "remove [game ID]": "remove selected game from basket",
+                "buy": "purchase items in basket"}
 
     def __init__(self, input_type):
         self.input_type = input_type
 
-    def setProductFilePath(self, productFilePath):
-        self.product_file_path = productFilePath
+    def setProductFilePath(self, product_file_path):
+        self.product_file_path = product_file_path
 
     def setGameData(self, game_data):
         self.game_data = game_data
@@ -49,6 +55,18 @@ class Main:
     def displayInitialMessage(self):
         print("Welcome to the Game Store.")
         self.displayStock()
+
+    def displayCommandRow(self, key, value):
+        print(key,":\t", value)
+
+    def displayCommands(self):
+        print("The commands are:")
+        for command_row in self.commands.items():
+            self.displayCommandRow(command_row.key(), command_row.value())
+
+
+    def getUserCommands(self):
+        self.displayCommands()
 
 
 def main():
