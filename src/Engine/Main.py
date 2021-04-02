@@ -1,23 +1,16 @@
 from src.Data.DataInputFile import DataInputFile
 from src.Data.DataInputStub import DataInputStub
 from src.Engine.Basket import Basket
-from src.Engine.Game import Game
+from src.Data.FileDataMapper import FileDataMapper
+from src.Engine.UserCommands import UserCommands
 
 
 class Main:
-    product_file_path = "resources/gameData.csv"
+    data_file_path = "resources/gameData.csv"
     input_type = None
     game_data = []
     header = []
     user_basket = Basket()
-    commands = {"list": "view stock",
-                "view [game ID]": "view the selected game details",
-                "add [game ID]": "add selected game to basket",
-                "basket": "view basket",
-                "remove [game ID]": "remove selected game from basket",
-                "buy": "purchase items in basket",
-                "help": "show available commands",
-                "exit": "leave program"}
 
     def __init__(self, input_type):
         self.input_type = input_type
@@ -33,19 +26,6 @@ class Main:
 
     def getUserBasket(self):
         return self.user_basket
-
-    def readFileData(self):
-        file_data = self.input_type.getFileData(self.product_file_path)
-        return file_data
-
-    def mapFileDataToGameData(self, file_data):
-        for row in file_data[1:]:
-            game_id = row[0]
-            game_name = row[1]
-            price = float(row[2])
-            stock = int(row[4])
-            temp_game = Game(game_id, game_name, price, stock)
-            self.game_data.append(temp_game)
 
     def displayGameData(self):
         for game in self.game_data:
@@ -84,27 +64,7 @@ class Main:
         print("Welcome to the Game Store.")
         self.displayStock()
 
-    def getLongestKeyLength(self, data_structure):
-        longest_length = 0
-        for key in data_structure:
-            key_length = len(key)
 
-            if key_length > longest_length:
-                longest_length = key_length
-        return longest_length
-
-    def displayCommandRow(self, key, value, command_key_length):
-        spacing_length = command_key_length - len(key)
-        spacing = " " * spacing_length
-        print(key + ": " + spacing + value)
-
-    def displayCommands(self):
-        print("The commands are:")
-        command_key_length = self.getLongestKeyLength(self.commands.keys())
-
-        for command_row in self.commands.items():
-            self.displayCommandRow(command_row[0], command_row[1], command_key_length)
-        print()
 
     def getUserCommand(self):
         is_valid = False
@@ -154,7 +114,7 @@ class Main:
             print(game.getGameName() + "\t\t£" + str(game.getPrice()))
 
     def handleUserCommands(self):
-        self.displayCommands()
+        UserCommands.displayCommands()
         active = True
         game_id = ""
         while active:
@@ -177,15 +137,15 @@ class Main:
             elif operation == "buy":
                 self.purchaseUserBasket()
             elif operation == "help":
-                self.displayCommands()
+                UserCommands.displayCommands()
             elif operation == "exit":
                 exit()
 
 def main():
     main = Main(DataInputFile())
-    file_data = main.readFileData()
-    main.setHeader(file_data[0])
-    main.mapFileDataToGameData(file_data)
+    header_row, game_data = FileDataMapper.mapFileDataToGameData(main.input_type, main.data_file_path)
+    main.setHeader(header_row)
+    main.setGameData(game_data)
     main.displayInitialMessage()
     main.handleUserCommands()
 
