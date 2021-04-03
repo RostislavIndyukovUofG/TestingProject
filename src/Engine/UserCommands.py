@@ -2,14 +2,29 @@ from enum import Enum
 
 
 class UserCommands(Enum):
-    LIST = [["list", "view stock"], ["list"]]
-    VIEW = [["view [game ID]", "view the selected game details"], ["view"]]
-    ADD = [["add [game ID]", "add selected game to basket"], ["add"]]
-    BASKET = [["basket", "view basket"], "basket"]
-    REMOVE = [["remove [game ID]", "remove selected game from basket"], ["remove"]]
-    BUY = [["buy", "purchase items in basket"], ["buy"]]
-    HELP = [["help", "show available commands"], ["help"]]
-    EXIT = [["exit", "leave program"], ["exit"]]
+    LIST = [["list", "view stock"],
+            ["list"]]
+
+    VIEW = [["view [game ID]", "view the selected game details"],
+            ["view"]]
+
+    ADD = [["add [game ID]", "add selected game to basket"],
+           ["add"]]
+
+    BASKET = [["basket", "view basket"],
+              ["basket"]]
+
+    REMOVE = [["remove [game ID]", "remove selected game from basket"],
+              ["remove"]]
+
+    BUY = [["buy", "purchase items in basket"],
+           ["buy"]]
+
+    HELP = [["help", "show available commands"],
+            ["help"]]
+
+    EXIT = [["exit", "leave program"],
+            ["exit"]]
 
     @classmethod
     def displayCommandRow(cls, command_details, keyword_length):

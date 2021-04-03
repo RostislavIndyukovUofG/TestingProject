@@ -1,9 +1,10 @@
 from src.Data.DataInputFile import DataInputFile
 from src.Data.DataInputStub import DataInputStub
-from src.Display.ConsoleOutput import ConsoleOutput
+from src.Display.ConsoleOutputs import ConsoleOutput
 from src.Engine.Basket import Basket
 from src.Data.FileDataMapper import FileDataMapper
 from src.Engine.UserCommands import UserCommands
+from src.Display.ConsoleInputs import ConsoleInputs
 
 
 class Main:
@@ -43,19 +44,6 @@ class Main:
         game = self.getGameFromGameId(game_id)
         return game.getGameDetails()
 
-    def getUserCommand(self):
-        is_valid = False
-        while not is_valid:
-            try:
-                user_command = []
-                raw_command = input("Enter a command: ")
-                raw_command.strip()
-                user_command = raw_command.split(" ")
-                is_valid = True
-            except:
-                print("Invalid command, type help to see available commands: ")
-        return user_command
-
     def addToUserBasket(self, game_id):
         game = self.getGameFromGameId(game_id)
         if self.user_basket.addToBasket(game):
@@ -89,7 +77,7 @@ class Main:
         game_id = ""
         while active:
 
-            user_command = self.getUserCommand()
+            user_command = ConsoleInputs.getUserCommand()
             operation = user_command[0]
             if len(user_command) > 1:
                 game_id = user_command[1]
