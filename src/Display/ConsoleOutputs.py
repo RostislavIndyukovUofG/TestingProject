@@ -36,3 +36,17 @@ class ConsoleOutput:
         for game in basket.getBasketList():
             cls.displayGameDetails(game)
         print("Basket total: £" + str(basket.getBasketTotal()))
+
+    @classmethod
+    def displayAddToBasketMessage(cls, is_game_added):
+        if is_game_added:
+            print("Game added successfully.")
+        else:
+            print("Game not added; game may already be in basket.")
+
+    @classmethod
+    def displayRemoveFromBasketMessage(cls, is_game_removed):
+        if is_game_removed:
+            print("Game removed successfully.")
+        else:
+            print("Game not in basket.")

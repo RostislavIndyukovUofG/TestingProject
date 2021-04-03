@@ -1,5 +1,6 @@
 from src.Engine.UserCommands import UserCommands
 
+
 class ConsoleInputs:
 
     @classmethod
