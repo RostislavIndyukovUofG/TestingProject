@@ -1,5 +1,5 @@
 from src.Display.DisplayInputs import ConsoleInput
-from src.Display.DisplayOutputs import ConsoleOutput
+from src.Display.DisplayOutputs import DisplayOutputs
 from src.Engine.BasketControls import BasketControls
 from src.Engine.UserCommands import UserCommands
 
@@ -23,16 +23,16 @@ class CommandHandler:
                 game_id = user_command[1]
 
             if operation in UserCommands.LIST.value[1]:
-                ConsoleOutput.displayStock(self.game_store_main.header, self.game_store_main.game_data)
+                DisplayOutputs.displayStock(self.game_store_main.header, self.game_store_main.game_data)
 
             elif operation in UserCommands.VIEW.value[1]:
-                ConsoleOutput.displayGameDetails(self.game_store_main.getGameFromGameId(game_id))
+                DisplayOutputs.displayGameDetails(self.game_store_main.getGameFromGameId(game_id))
 
             elif operation in UserCommands.ADD.value[1]:
                 BasketControls.addToUserBasket(game_id, self.game_store_main, self.game_store_main.user_basket)
 
             elif operation in UserCommands.BASKET.value[1]:
-                ConsoleOutput.displayUserBasket(self.game_store_main.user_basket)
+                DisplayOutputs.displayUserBasket(self.game_store_main.user_basket)
 
             elif operation in UserCommands.REMOVE.value[1]:
                 BasketControls.removeFromUserBasket(game_id, self.game_store_main, self.game_store_main.user_basket)

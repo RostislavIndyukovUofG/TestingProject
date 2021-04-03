@@ -1,6 +1,8 @@
-class Basket():
-    basket_list = []
-    basket_total = 0.00
+class Basket:
+
+    def __init__(self):
+        self.basket_list = []
+        self.basket_total = 0.00
 
     def addToBasket(self, game_to_add):
         found = False

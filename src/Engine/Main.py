@@ -7,16 +7,14 @@ from src.Engine.CommandHandler import CommandHandler
 
 
 class Main:
-    data_file_path = "resources/gameData.csv"
-    input_type = None
-    command_handler = None
-    user_basket = Basket()
-    game_data = []
-    header = []
 
     def __init__(self, input_type):
+        self.data_file_path = "resources/gameData.csv"
         self.input_type = input_type
         self.command_handler = CommandHandler(self)
+        self.user_basket = Basket()
+        self.game_data = []
+        self.header = []
 
     def setDataFilePath(self, data_file_path):
         self.data_file_path = data_file_path

@@ -1,4 +1,4 @@
-from src.Display.DisplayOutputs import ConsoleOutput
+from src.Display.DisplayOutputs import DisplayOutputs
 
 
 class BasketControls:
@@ -7,13 +7,13 @@ class BasketControls:
     def addToUserBasket(cls, game_id, game_store_main, user_basket):
         game = game_store_main.getGameFromGameId(game_id)
         is_game_added = user_basket.addToBasket(game)
-        ConsoleOutput.displayAddToBasketMessage(is_game_added)
+        DisplayOutputs.displayAddToBasketMessage(is_game_added)
 
     @classmethod
     def removeFromUserBasket(cls, game_id, game_store_main, user_basket):
         game = game_store_main.getGameFromGameId(game_id)
         is_game_removed = user_basket.removeFromBasket(game)
-        ConsoleOutput.displayRemoveFromBasketMessage(is_game_removed)
+        DisplayOutputs.displayRemoveFromBasketMessage(is_game_removed)
 
     @classmethod
     def purchaseUserBasket(cls, user_basket, game_data):

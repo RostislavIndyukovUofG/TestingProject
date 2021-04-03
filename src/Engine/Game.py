@@ -1,9 +1,4 @@
 class Game:
-    game_id = None
-    game_name = None
-    price = None
-    platform = None
-    stock = None
 
     def __init__(self, game_id, game_name, price, stock):
         self.game_id = game_id
@@ -15,10 +10,10 @@ class Game:
         return self.game_id + "\t\t" + self.game_name
 
     def setStock(self, stock):
-        if stock >= 0:
+        if stock > 0:
             self.stock -= 1
         else:
-            self.stock == 0
+            self.stock = 0
 
     def getGameID(self):
         return self.game_id

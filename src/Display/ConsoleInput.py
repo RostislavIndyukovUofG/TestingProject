@@ -3,11 +3,9 @@ from src.Display.IInput import IInput
 
 class ConsoleInput(IInput):
 
-    write_to_file = False
-    file_path = ""
-
     def __init__(self, write_to_file):
         self.write_to_file = write_to_file
+        self.file_path = ""
 
     def setLogFilePath(self, file_path):
         self.file_path = file_path
