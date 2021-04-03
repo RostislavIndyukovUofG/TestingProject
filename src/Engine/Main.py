@@ -1,5 +1,6 @@
 from src.Data.DataInputFile import DataInputFile
 from src.Data.DataInputStub import DataInputStub
+from src.Display.ConsoleOutput import ConsoleOutput
 from src.Engine.Basket import Basket
 from src.Data.FileDataMapper import FileDataMapper
 from src.Engine.UserCommands import UserCommands
@@ -24,12 +25,14 @@ class Main:
     def setHeader(self, header):
         self.header = header
 
+    def getHeader(self):
+        return self.header
+
+    def getGameData(self):
+        return self.game_data
+
     def getUserBasket(self):
         return self.user_basket
-
-    def displayGameData(self):
-        for game in self.game_data:
-            print(game)
 
     def getGameFromGameId(self, game_id):
         for game in self.game_data:
@@ -39,32 +42,6 @@ class Main:
     def getGameDetails(self, game_id):
         game = self.getGameFromGameId(game_id)
         return game.getGameDetails()
-
-    def displayGameDetails(self, game_id):
-        game_details = self.getGameDetails(game_id)
-        if len(game_details) > 0:
-            if game_details[3] > 0:
-                print()
-                print("Game Id:\t" + game_details[0])
-                print("Game Name:\t" + game_details[1])
-                print("Price:\t£" + str(game_details[2]))
-                print("Stock:\t" + str(game_details[3]))
-        else:
-            print("Game not found.")
-        print()
-
-    def displayStock(self):
-        print("The current games in stock are:")
-        print(self.header[0] + "\t" + self.header[1])
-        for game in self.game_data:
-            self.displayGameDetails(game.getGameID())
-        print()
-
-    def displayInitialMessage(self):
-        print("Welcome to the Game Store.")
-        self.displayStock()
-
-
 
     def getUserCommand(self):
         is_valid = False
@@ -93,13 +70,6 @@ class Main:
         else:
             print("Game not in basket.")
 
-    def viewUserBasket(self):
-        print("Your basket:")
-        for game in self.user_basket.getBasketList():
-            game_id = game.getGameID()
-            self.displayGameDetails(game_id)
-        print("Basket total: £" + str(self.user_basket.getBasketTotal()))
-
     def purchaseUserBasket(self):
         print("Your order: ")
         print()
@@ -125,13 +95,13 @@ class Main:
                 game_id = user_command[1]
 
             if operation == "list":
-                self.displayStock()
+                ConsoleOutput.displayStock(self.header, self.game_data)
             elif operation == "view":
-                self.displayGameDetails(game_id)
+                ConsoleOutput.displayGameDetails(self.getGameFromGameId(game_id))
             elif operation == "add":
                 self.addToUserBasket(game_id)
             elif operation == "basket":
-                self.viewUserBasket()
+                ConsoleOutput.displayUserBasket(self.user_basket)
             elif operation == "remove":
                 self.removeFromUserBasket(game_id)
             elif operation == "buy":
@@ -146,7 +116,8 @@ def main():
     header_row, game_data = FileDataMapper.mapFileDataToGameData(main.input_type, main.data_file_path)
     main.setHeader(header_row)
     main.setGameData(game_data)
-    main.displayInitialMessage()
+    ConsoleOutput.displayInitialMessage()
+    ConsoleOutput.displayStock(main.getHeader(), main.getGameData())
     main.handleUserCommands()
 
 
