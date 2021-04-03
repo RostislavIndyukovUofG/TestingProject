@@ -18,14 +18,8 @@ class Main:
         self.input_type = input_type
         self.command_handler = CommandHandler(self)
 
-    def setProductFilePath(self, data_file_path):
+    def setDataFilePath(self, data_file_path):
         self.data_file_path = data_file_path
-
-    def setGameData(self, game_data):
-        self.game_data = game_data
-
-    def setHeader(self, header):
-        self.header = header
 
     def getHeader(self):
         return self.header
@@ -45,15 +39,17 @@ class Main:
         game = self.getGameFromGameId(game_id)
         return game.getGameDetails()
 
+    def getGameDataAndHeader(self):
+        file_data = self.input_type.getFileData(self.data_file_path)
+        self.header, self.game_data = FileDataMapper.mapFileDataToGameData(file_data)
+
 
 def main():
-    main = Main(DataInputFile())
-    header_row, game_data = FileDataMapper.mapFileDataToGameData(main.input_type, main.data_file_path)
-    main.setHeader(header_row)
-    main.setGameData(game_data)
+    game_store_main = Main(DataInputStub())
+    game_store_main.getGameDataAndHeader()
     ConsoleOutput.displayInitialMessage()
-    ConsoleOutput.displayStock(main.getHeader(), main.getGameData())
-    main.command_handler.handleUserCommands()
+    ConsoleOutput.displayStock(game_store_main.getHeader(), game_store_main.getGameData())
+    game_store_main.command_handler.handleUserCommands()
 
 
 if __name__ == "__main__":

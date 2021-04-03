@@ -1,6 +1,7 @@
 import csv
 from src.Data.IDataInput import IDataInput
 
+
 class DataInputFile(IDataInput):
 
     def getFileData(self, file_path):
