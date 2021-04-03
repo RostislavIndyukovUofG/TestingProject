@@ -1,22 +1,22 @@
 from src.Data.DataInputFile import DataInputFile
 from src.Data.DataInputStub import DataInputStub
-from src.Display.ConsoleOutputs import ConsoleOutput
+from src.Display.ConsoleOutput import ConsoleOutput
 from src.Engine.Basket import Basket
 from src.Data.FileDataMapper import FileDataMapper
-from src.Engine.UserCommands import UserCommands
-from src.Display.ConsoleInputs import ConsoleInputs
-from src.Engine.BasketControls import BasketControls
+from src.Engine.CommandHandler import CommandHandler
 
 
 class Main:
     data_file_path = "resources/gameData.csv"
     input_type = None
+    command_handler = None
+    user_basket = Basket()
     game_data = []
     header = []
-    user_basket = Basket()
 
     def __init__(self, input_type):
         self.input_type = input_type
+        self.command_handler = CommandHandler(self)
 
     def setProductFilePath(self, data_file_path):
         self.data_file_path = data_file_path
@@ -45,40 +45,6 @@ class Main:
         game = self.getGameFromGameId(game_id)
         return game.getGameDetails()
 
-    def handleUserCommands(self):
-        UserCommands.displayCommands()
-        active = True
-        game_id = ""
-        while active:
-
-            user_command = ConsoleInputs.getUserCommand()
-            operation = user_command[0]
-            if len(user_command) > 1:
-                game_id = user_command[1]
-
-            if operation == "list":
-                ConsoleOutput.displayStock(self.header, self.game_data)
-
-            elif operation == "view":
-                ConsoleOutput.displayGameDetails(self.getGameFromGameId(game_id))
-
-            elif operation == "add":
-                BasketControls.addToUserBasket(game_id, self, self.user_basket)
-
-            elif operation == "basket":
-                ConsoleOutput.displayUserBasket(self.user_basket)
-
-            elif operation == "remove":
-                BasketControls.removeFromUserBasket(game_id, self, self.user_basket)
-
-            elif operation == "buy":
-                BasketControls.purchaseUserBasket(self.user_basket, self.game_data)
-
-            elif operation == "help":
-                UserCommands.displayCommands()
-
-            elif operation == "exit":
-                exit()
 
 def main():
     main = Main(DataInputFile())
@@ -87,7 +53,7 @@ def main():
     main.setGameData(game_data)
     ConsoleOutput.displayInitialMessage()
     ConsoleOutput.displayStock(main.getHeader(), main.getGameData())
-    main.handleUserCommands()
+    main.command_handler.handleUserCommands()
 
 
 if __name__ == "__main__":

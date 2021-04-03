@@ -1,4 +1,4 @@
-from src.Display.ConsoleOutputs import ConsoleOutput
+from src.Display.ConsoleOutput import ConsoleOutput
 
 
 class BasketControls:

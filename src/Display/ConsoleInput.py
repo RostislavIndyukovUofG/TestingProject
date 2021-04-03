@@ -1,7 +1,7 @@
 from src.Engine.UserCommands import UserCommands
 
 
-class ConsoleInputs:
+class ConsoleInput:
 
     @classmethod
     def getUserCommand(cls):
