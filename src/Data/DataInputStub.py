@@ -3,7 +3,7 @@ from src.Data.IDataInput import IDataInput
 
 class DataInputStub(IDataInput):
 
-    def getFileData(self, file_path):
+    def getData(self, file_path):
         file_data = []
         header = ["GameID", "Game Name", "Price", "Stock"]
         game1 = ["1", "Xbox Video Game", 4.99, 3]

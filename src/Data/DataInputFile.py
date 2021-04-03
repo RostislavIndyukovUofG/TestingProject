@@ -4,7 +4,7 @@ from src.Data.IDataInput import IDataInput
 
 class DataInputFile(IDataInput):
 
-    def getFileData(self, file_path):
+    def getData(self, file_path):
         file_data = []
         with open(file_path, "r") as file:
             file_reader = csv.reader(file)

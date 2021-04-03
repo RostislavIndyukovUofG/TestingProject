@@ -1,15 +1,17 @@
-from src.Display.IInput import IInput
+from src.Display.IOuput import IOutput
 
 
-class ConsoleOutput(IInput):
+class TestOutput(IOutput):
 
     def __init__(self):
         self.output_list = []
 
-    def setInputList(self, output_list):
+    def setOutputList(self, output_list):
         self.output_list = output_list
 
-    def getInput(self, input_message):
-        user_output = self.output_list.pop(0)
+    def getOutputList(self):
+        return self.output_list
 
+    def displayOutput(self, output_message):
+        user_output = self.output_list.append(output_message)
         return user_output

@@ -35,9 +35,17 @@ class Game:
         game_details = [game_id, game_name, price, stock]
         return game_details
 
+    def displayGameDetails(self, user_output):
+        if len(self.getGameName()) > 0:
+            if self.getStock() > 0:
+                user_output.displayOutput("Game Id:\t" + self.getGameID())
+                user_output.displayOutput("Game Name:\t" + self.getGameName())
+                user_output.displayOutput("Price:\t£" + str(self.getPrice()))
+                user_output.displayOutput("Stock:\t" + str(self.getStock()))
+        else:
+            user_output.displayOutput("Game not found.")
+        print()
 
-    def displayGameDetails(self):
-        main_line = self.getGameID() + ":\t" + self.getGameName()
-        details_line = "Price: £" + self.getPrice() + "\tstock: " + self.getStock()
-        game_details = [main_line, details_line]
-        return game_details
+    def displayGameData(self, game_data, user_output):
+        for game in game_data:
+            user_output.displayOutput(game)

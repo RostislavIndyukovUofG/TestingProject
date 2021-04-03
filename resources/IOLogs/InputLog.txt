@@ -1,0 +1,6 @@
+list
+add 3
+buy
+close
+exit
+exit

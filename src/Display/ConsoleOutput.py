@@ -4,8 +4,9 @@ from src.Display.IOuput import IOutput
 class ConsoleOutput(IOutput):
 
     def __init__(self, write_to_file):
+        self.file_path = "resources/IOLogs/OutputLog.txt"
         self.write_to_file = write_to_file
-        self.file_path = ""
+        self.initialiseLogFile()
 
     def setLogFilePath(self, file_path):
         self.file_path = file_path

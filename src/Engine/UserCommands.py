@@ -5,9 +5,6 @@ class UserCommands(Enum):
     LIST = [["list", "view stock"],
             ["list"]]
 
-    VIEW = [["view [game ID]", "view the selected game details"],
-            ["view"]]
-
     ADD = [["add [game ID]", "add selected game to basket"],
            ["add"]]
 
@@ -27,21 +24,21 @@ class UserCommands(Enum):
             ["exit"]]
 
     @classmethod
-    def displayCommandRow(cls, command_details, keyword_length):
+    def displayCommandRow(cls, command_details, keyword_length, user_output):
         keyword = command_details[0][0]
         description = command_details[0][1]
 
         spacing_length = keyword_length - len(keyword)
         spacing = " " * spacing_length
-        print(keyword + ": " + spacing + description)
+        user_output.displayOutput(keyword + ": " + spacing + description)
 
     @classmethod
-    def displayCommands(cls):
-        print("The commands are:")
+    def displayCommands(cls, user_output):
+        user_output.displayOutput("The commands are:")
         keyword_length = cls.getLongestKeywordLength()
 
         for command in UserCommands:
-            cls.displayCommandRow(command.value, keyword_length)
+            cls.displayCommandRow(command.value, keyword_length, user_output)
         print()
 
     @classmethod
