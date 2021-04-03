@@ -1,6 +1,6 @@
 from src.Data.DataInputFile import DataInputFile
 from src.Data.DataInputStub import DataInputStub
-from src.Display.ConsoleOutput import ConsoleOutput
+from src.Display.DisplayOutputs import DisplayOutputs
 from src.Engine.Basket import Basket
 from src.Data.FileDataMapper import FileDataMapper
 from src.Engine.CommandHandler import CommandHandler
@@ -27,9 +27,6 @@ class Main:
     def getGameData(self):
         return self.game_data
 
-    def getUserBasket(self):
-        return self.user_basket
-
     def getGameFromGameId(self, game_id):
         for game in self.game_data:
             if game_id == game.getGameID():
@@ -45,10 +42,10 @@ class Main:
 
 
 def main():
-    game_store_main = Main(DataInputStub())
+    game_store_main = Main(DataInputFile())
     game_store_main.getGameDataAndHeader()
-    ConsoleOutput.displayInitialMessage()
-    ConsoleOutput.displayStock(game_store_main.getHeader(), game_store_main.getGameData())
+    DisplayOutputs.displayInitialMessage()
+    DisplayOutputs.displayStock(game_store_main.getHeader(), game_store_main.getGameData())
     game_store_main.command_handler.handleUserCommands()
 
 

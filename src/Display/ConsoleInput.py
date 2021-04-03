@@ -1,28 +1,27 @@
-from src.Engine.UserCommands import UserCommands
+from src.Display.IInput import IInput
 
 
-class ConsoleInput:
+class ConsoleInput(IInput):
 
-    @classmethod
-    def getUserCommand(cls):
-        is_valid_command = False
-        while not is_valid_command:
-            try:
-                user_command_list = []
-                raw_command = input("Enter a command: ")
-                raw_command.strip()
-                user_command_list = raw_command.split(" ")
-                is_valid_command = cls.isValidUserCommand(user_command_list)
+    write_to_file = False
+    file_path = ""
 
-                if not is_valid_command:
-                    raise ValueError
-            except:
-                print("Invalid command. Type help to see available commands: ")
-        return user_command_list
+    def __init__(self, write_to_file):
+        self.write_to_file = write_to_file
 
-    @classmethod
-    def isValidUserCommand(cls, user_command_list):
-        for command in UserCommands:
-            if user_command_list[0] in command.value[1]:
-                return True
-        return False
+    def setLogFilePath(self, file_path):
+        self.file_path = file_path
+
+    def initialiseLogFile(self):
+        if self.write_to_file:
+            with open(self.file_path, "w") as log:
+                log.write("")
+
+    def getInput(self, input_message):
+        user_input = input(input_message)
+
+        if self.write_to_file:
+            with open(self.file_path, "a") as log:
+                log.write(input_message + "\n")
+
+        return user_input

@@ -1,11 +1,11 @@
 GameID,Game Name,Price,Stock
-1,Anno 1701,8.99,PC,4
-2,Metro 2033,9.99,PC,5
-3,Assassin's Creed Brotherhood,26.99,PC,7
-4,Killer Instinct,14.99,Xbox,8
-5,Marathon,9.99,Apple Mac,4
-6,Battlefield 1,12.99,PC,5
-7,Just Cause 2,10.99,PC,4
-8,Half-Life 2,10.99,PC,3
-9,Star Wars Republic Commando,24.99,Xbox,2
-10,Halo Wars 2,9.99,Xbox One,1
+1,Anno 1701,8.99,4
+2,Metro 2033,9.99,5
+3,Assassin's Creed Brotherhood,26.99,7
+4,Killer Instinct,14.99,8
+5,Marathon,9.99,4
+6,Battlefield 1,12.99,5
+7,Just Cause 2,10.99,4
+8,Half-Life 2,10.99,3
+9,Star Wars Republic Commando,24.99,2
+10,Halo Wars 2,9.99,1

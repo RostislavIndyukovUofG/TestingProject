@@ -1,5 +1,5 @@
-from src.Display.ConsoleInput import ConsoleInput
-from src.Display.ConsoleOutput import ConsoleOutput
+from src.Display.DisplayInputs import ConsoleInput
+from src.Display.DisplayOutputs import ConsoleOutput
 from src.Engine.BasketControls import BasketControls
 from src.Engine.UserCommands import UserCommands
 
