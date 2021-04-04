@@ -11,13 +11,14 @@ class ConsoleInputTest(unittest.TestCase):
 
     def test_UserInputFaking(self):
         main = Main(DataInputFile(), TestInput(), TestOutput())
-        main.user_input.setInputList = LogFileReader.readFromLogFile("../../resources/IOLogs/InputLog.txt")
-        main.user_input.setOutputList = LogFileReader.readFromLogFile("../../resources/IOLogs/OutputLog.txt")
+        input_list = LogFileReader.readFromLogFile("../../resources/IOLogs/InputLog.txt")
+        main.user_input.setInputList(input_list)
+        output_list = LogFileReader.readFromLogFile("../../resources/IOLogs/OutputLog.txt")
+        main.user_output.setOutputList(output_list)
         main.setGameDataAndHeader()
         main.displayInitialMessage()
-        main.command_handler.handleUserCommands()
-
-        self.assertEqual(True, False)
+        close = main.command_handler.handleUserCommands()
+        self.assertEqual(output_list, main.user_output.getOutputList())
 
 
 

@@ -24,7 +24,7 @@ class Main:
             self.user_output = user_output
 
         self.file_path = "resources/gameData.csv"
-        self.basket = Basket(user_input, user_output)
+        self.basket = Basket(self.user_input, self.user_output)
         self.command_handler = CommandHandler(self.user_input, self.user_output, self.basket, self)
         self.game_data = []
         self.header = []
@@ -77,7 +77,10 @@ def main():
     main = Main()
     main.setGameDataAndHeader()
     main.displayInitialMessage()
-    main.command_handler.handleUserCommands()
+    close = main.command_handler.handleUserCommands()
+
+    if close:
+        exit()
 
 
 if __name__ == "__main__":

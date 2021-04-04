@@ -12,6 +12,7 @@ class CommandHandler:
     def handleUserCommands(self):
         UserCommands.displayCommands(self.user_output)
         active = True
+        close = True
         game_id = ""
 
         while active:
@@ -43,7 +44,10 @@ class CommandHandler:
 
             elif operation in UserCommands.EXIT.value[1]:
                 self.user_output.displayOutput("Closing program.")
-                exit()
+                active = False
+
+        return close
+
 
     def getUserCommand(self):
         is_valid_command = False

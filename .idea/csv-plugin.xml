@@ -24,6 +24,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\Display\TestInput.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\test\DisplayTests\ConsoleInputTest.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
