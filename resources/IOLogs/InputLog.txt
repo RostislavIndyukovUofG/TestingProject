@@ -1,5 +1,1 @@
 list
-add 2
-basket
-buy
-exit

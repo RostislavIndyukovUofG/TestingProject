@@ -3,7 +3,6 @@ from src.Data.DataInputStub import DataInputStub
 from src.Display.ConsoleInput import ConsoleInput
 from src.Display.ConsoleOutput import ConsoleOutput
 from src.Engine.Basket import Basket
-from src.Data.FileDataMapper import FileDataMapper
 from src.Engine.CommandHandler import CommandHandler
 
 
@@ -54,14 +53,7 @@ class Main:
         return game.getGameDetails()
 
     def setGameDataAndHeader(self):
-        try:
-            file_data = self.input_type.getData(self.file_path)
-            self.header, self.game_data = FileDataMapper.mapFileDataToGameData(file_data)
-        except:
-            self.user_output.displayOutput("An error occurred. Switching to stub data.")
-            self.setDataInputType(DataInputStub())
-            file_data = self.input_type.getData(self.file_path)
-            self.header, self.game_data = FileDataMapper.mapFileDataToGameData(file_data)
+        self.header, self.game_data = self.input_type.getGameDataAndHeader(self.file_path, self.user_output)
 
     def displayInitialMessage(self):
         self.user_output.displayOutput("Welcome to the Game Store.")

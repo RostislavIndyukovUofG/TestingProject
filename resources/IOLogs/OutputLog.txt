@@ -48,13 +48,3 @@ Game Id:	10
 Game Name:	Halo Wars 2
 Price:	£9.99
 Stock:	1
-Game added successfully.
-Your basket:
-Game Id:	2
-Game Name:	Metro 2033
-Price:	£9.99
-Stock:	5
-Basket total: £9.99
-Your order: 
-Metro 2033		£9.99
-Closing program.
