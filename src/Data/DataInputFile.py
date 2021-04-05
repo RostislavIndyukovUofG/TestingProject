@@ -16,7 +16,7 @@ class DataInputFile(IDataInput):
 
         return file_data
 
-    def getGameDataAndHeader(self, file_path, user_output):
+    def getFileData(self, file_path, user_output):
         try:
             file_data = self.readRawData(file_path)
 
@@ -27,5 +27,4 @@ class DataInputFile(IDataInput):
             stub = DataInputStub()
             file_data = stub.readRawData(file_path)
         finally:
-            header, game_data = self.mapDataToGameData(file_data, user_output)
-            return header, game_data
+            return file_data

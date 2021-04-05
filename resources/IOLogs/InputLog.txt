@@ -1,1 +1,6 @@
-list
+add 1
+add 5
+add8
+add 8
+p
+b

@@ -27,14 +27,14 @@ class CommandHandler:
 
             elif operation in UserCommands.ADD.value[1]:
                 game_to_add = self.main.getGameFromGameId(game_id)
-                self.basket.addToBasket(game_to_add)
+                self.basket.updateBasket(game_to_add, "add")
 
             elif operation in UserCommands.BASKET.value[1]:
                 self.basket.displayBasket()
 
             elif operation in UserCommands.REMOVE.value[1]:
                 game_to_remove = self.main.getGameFromGameId(game_id)
-                self.basket.removeFromBasket(game_to_remove)
+                self.basket.updateBasket(game_to_remove, "remove")
 
             elif operation in UserCommands.BUY.value[1]:
                 self.basket.purchaseBasket(self.main.getGameData())
@@ -48,7 +48,6 @@ class CommandHandler:
 
         return close
 
-
     def getUserCommand(self):
         is_valid_command = False
         while not is_valid_command:
@@ -61,7 +60,7 @@ class CommandHandler:
                 if not is_valid_command:
                     raise ValueError
             except:
-                self.user_input.getInput("Invalid command. Type help to see available commands: ")
+                self.user_output.displayOutput("Invalid command. Type help to see available commands.")
 
         return command_list
 

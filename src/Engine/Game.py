@@ -6,9 +6,6 @@ class Game:
         self.price = price
         self.stock = stock
 
-    def __str__(self):
-        return self.game_id + "\t\t" + self.game_name
-
     def setStock(self, stock):
         if stock > 0:
             self.stock -= 1
@@ -46,6 +43,5 @@ class Game:
             user_output.displayOutput("Game not found.")
         print()
 
-    def displayGameData(self, game_data, user_output):
-        for game in game_data:
-            user_output.displayOutput(game)
+    def displayGame(self, user_output):
+        user_output.displayOutput(self.getGameName() + "\t\t£" + str(self.getPrice()))

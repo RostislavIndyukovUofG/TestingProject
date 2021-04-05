@@ -4,6 +4,7 @@ from src.Display.ConsoleInput import ConsoleInput
 from src.Display.ConsoleOutput import ConsoleOutput
 from src.Engine.Basket import Basket
 from src.Engine.CommandHandler import CommandHandler
+from src.Engine.Game import Game
 
 
 class Main:
@@ -53,7 +54,18 @@ class Main:
         return game.getGameDetails()
 
     def setGameDataAndHeader(self):
-        self.header, self.game_data = self.input_type.getGameDataAndHeader(self.file_path, self.user_output)
+        file_data = self.input_type.getFileData(self.file_path, self.user_output)
+        game_data = []
+        self.header = file_data[0]
+
+        for row in file_data[1:]:
+            game_id = row[0]
+            game_name = row[1]
+            price = float(row[2])
+            stock = int(row[3])
+            temp_game = Game(game_id, game_name, price, stock)
+            game_data.append(temp_game)
+        self.game_data = game_data
 
     def displayInitialMessage(self):
         self.user_output.displayOutput("Welcome to the Game Store.")

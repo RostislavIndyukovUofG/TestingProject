@@ -3,25 +3,25 @@ from enum import Enum
 
 class UserCommands(Enum):
     LIST = [["list", "view stock"],
-            ["list"]]
+            ["list", "l"]]
 
     ADD = [["add [game ID]", "add selected game to basket"],
-           ["add"]]
+           ["add", "a"]]
 
     BASKET = [["basket", "view basket"],
-              ["basket"]]
+              ["basket", "b"]]
 
     REMOVE = [["remove [game ID]", "remove selected game from basket"],
-              ["remove"]]
+              ["remove", "r"]]
 
-    BUY = [["buy", "purchase items in basket"],
-           ["buy"]]
+    BUY = [["purchase", "purchase items in basket"],
+           ["purchase", "p"]]
 
     HELP = [["help", "show available commands"],
-            ["help"]]
+            ["help", "h"]]
 
     EXIT = [["exit", "leave program"],
-            ["exit"]]
+            ["exit", "e"]]
 
     @classmethod
     def displayCommandRow(cls, command_details, keyword_length, user_output):

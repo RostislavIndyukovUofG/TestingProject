@@ -21,35 +21,28 @@ class GetFileDataMocksTest(unittest.TestCase):
 
     user_output = TestOutput()
 
-    def test_getHeaderFromFoundFileMock(self):
+    def test_getDataFromFoundFileMock(self):
         file_path = "../../resources/gameData.csv"
-        data_file = DataInputFile()
+        input_type = DataInputFile()
         DataInputFile.readRawData = MagicMock(return_value=self.data_list)
-        header, game_data = data_file.getGameDataAndHeader(file_path, self.user_output)
-        self.assertEqual(["GameID", "Game Name", "Price", "Stock"], header)
-
-    def test_getGameDataFromFoundFileMock(self):
-        file_path = "../../resources/gameData.csv"
-        data_file = DataInputFile()
-        DataInputFile.readRawData = MagicMock(return_value=self.data_list)
-        header, game_data = data_file.getGameDataAndHeader(file_path, self.user_output)
-        self.assertEqual("Metro 2033", game_data[-1].getGameName())
+        file_data = input_type.getFileData(file_path, self.user_output)
+        self.assertEqual(['1', 'Anno 1701', '8.99', '4'], file_data[1])
 
     def test_getGameDataFromMissingFileMock(self):
         file_path = "../../resources/gameData.csv"
-        data_file = DataInputFile()
+        input_type = DataInputFile()
         DataInputFile.readRawData = MagicMock(side_effect=FileNotFoundError)
-        header, game_data = data_file.getGameDataAndHeader(file_path, self.user_output)
-        self.assertEqual("PC Video Game", game_data[-1].getGameName())
+        file_data = input_type.getFileData(file_path, self.user_output)
+        self.assertEqual(['3', 'PC Video Game', 7.99, 3], file_data[-1])
 
     def test_getGameDataFromMultipleFoundFilesMock(self):
         file_path = "../../resources/gameData.csv"
-        data_file = DataInputFile()
+        input_type = DataInputFile()
         DataInputFile.readRawData = MagicMock(side_effect=[self.data_list, self.data_list2, self.data_list3])
-        header, game_data = data_file.getGameDataAndHeader(file_path, self.user_output)
-        header, game_data = data_file.getGameDataAndHeader(file_path, self.user_output)
-        header, game_data = data_file.getGameDataAndHeader(file_path, self.user_output)
-        self.assertEqual("Killer Instinct", game_data[-1].getGameName())
+        file_data = input_type.getFileData(file_path, self.user_output)
+        file_data = input_type.getFileData(file_path, self.user_output)
+        file_data = input_type.getFileData(file_path, self.user_output)
+        self.assertEqual(['4', 'Killer Instinct', '14.99', '8'], file_data[-1])
 
 
 if __name__ == '__main__':
