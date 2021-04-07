@@ -1,19 +1,11 @@
 class Basket:
 
-    def __init__(self, user_input, user_output):
+    def __init__(self, user_input, user_output, game_data):
         self.basket_list = []
         self.basket_total = 0.00
         self.user_input = user_input
         self.user_output = user_output
-
-    def getBasketTotal(self):
-        return self.basket_total
-
-    def getBasketList(self):
-        return self.basket_list
-
-    def setBasketList(self, basket_list):
-        self.basket_list = basket_list
+        self.game_data = game_data
 
     def updateBasket(self, game, operation):
         game_position = self.findGameInBasket(game)
@@ -23,20 +15,20 @@ class Basket:
         else:
             self.removeFromBasket(game_position, game)
 
-    def findGameInBasket(self, game):
-        game_id = game.getGameID()
+    def findGameInBasket(self, target_game):
+        target_game_id = target_game.game_id
         game_position = -1
 
-        for i, basket_game in enumerate(self.getBasketList()):
-            basket_game_id = basket_game.getGameID()
+        for i, basket_game in enumerate(self.basket_list):
+            basket_game_id = basket_game.game_id
 
-            if basket_game_id == game_id:
+            if basket_game_id == target_game_id:
                 game_position = i
 
         return game_position
 
     def addToBasket(self, game_position, game_to_add):
-        if game_position < 0:
+        if game_position < 0 and game_to_add.stock > 0:
             self.basket_list.append(game_to_add)
             self.calcualateBasketTotal()
             self.user_output.displayOutput("Game added successfully.")
@@ -55,32 +47,26 @@ class Basket:
         self.basket_total = 0.00
 
         for game in self.basket_list:
-            self.basket_total += game.getPrice()
+            self.basket_total += game.price
 
     def displayBasket(self):
         self.user_output.displayOutput("Your basket:")
 
-        for game in self.getBasketList():
+        for game in self.basket_list:
             game.displayGameDetails(self.user_output)
 
-        self.user_output.displayOutput("Basket total: £" + str(self.getBasketTotal()))
+        self.user_output.displayOutput("Basket total: £" + str(self.basket_total))
 
-    def purchaseBasket(self, game_data):
-        if len(self.getBasketList()) > 0:
+    def purchaseBasket(self):
+        if len(self.basket_list) > 0:
             self.user_output.displayOutput("Your order:")
             print()
 
-            for basket_game in self.getBasketList():
+            for basket_game in self.basket_list:
                 basket_game.displayGame(self.user_output)
-                self.reduceGameStock(game_data, basket_game.getGameID())
-            self.setBasketList([])
+                self.game_data.reduceGameStock(basket_game.game_id)
+
+            self.basket_list = []
             self.calcualateBasketTotal()
         else:
             self.user_output.displayOutput("Your basket is emtpy.")
-
-    def reduceGameStock(self, game_data, basket_game_id):
-        for i, game in enumerate(game_data):
-            if game.getGameID() == basket_game_id:
-                game_stock = game.getStock()
-                game_data[i].setStock(game_stock - 1)
-

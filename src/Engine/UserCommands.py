@@ -35,19 +35,19 @@ class UserCommands(Enum):
     @classmethod
     def displayCommands(cls, user_output):
         user_output.displayOutput("The commands are:")
-        keyword_length = cls.getLongestKeywordLength()
+        keyword_length = cls.getLongestWordLength()
 
         for command in UserCommands:
             cls.displayCommandRow(command.value, keyword_length, user_output)
         print()
 
     @classmethod
-    def getLongestKeywordLength(cls):
-        longest_keyword = 0
+    def getLongestWordLength(cls):
+        longest_word = 0
         for command in UserCommands:
             command_keyword = command.value[0][0]
             keyword_length = len(command_keyword)
 
-            if keyword_length > longest_keyword:
-                longest_keyword = keyword_length
-        return longest_keyword
+            if keyword_length > longest_word:
+                longest_word = keyword_length
+        return longest_word

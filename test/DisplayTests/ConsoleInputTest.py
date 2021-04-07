@@ -21,6 +21,5 @@ class ConsoleInputTest(unittest.TestCase):
         self.assertEqual(output_list, main.user_output.getOutputList())
 
 
-
 if __name__ == '__main__':
     unittest.main()

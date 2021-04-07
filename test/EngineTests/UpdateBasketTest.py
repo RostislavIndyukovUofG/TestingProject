@@ -6,7 +6,7 @@ from src.Engine.Basket import Basket
 from src.Engine.Game import Game
 
 
-class BasketTest(unittest.TestCase):
+class UpdateBasketTest(unittest.TestCase):
     user_input = ConsoleInput(False)
     user_output = TestOutput()
 
@@ -19,92 +19,85 @@ class BasketTest(unittest.TestCase):
     # updateBasket
 
     def test_addGameToEmptyBasket(self):
-        user_input = ConsoleInput(False)
-        user_output = TestOutput()
-        basket = Basket(user_input, user_output)
+        basket = Basket(self.user_input, self.user_output)
         basket.updateBasket(self.game, "add")
         self.assertEqual(self.game, basket.getBasketList()[0])
 
     def test_addGameToBasket(self):
-        user_input = ConsoleInput(False)
-        user_output = TestOutput()
-        basket = Basket(user_input, user_output)
+        basket = Basket(self.user_input, self.user_output)
         basket_size = len(basket.getBasketList())
         basket.updateBasket(self.game, "add")
         self.assertEqual(basket_size + 1, len(basket.getBasketList()))
 
     def test_addGameToBasketOutput(self):
-        user_input = ConsoleInput(False)
-        user_output = TestOutput()
-        basket = Basket(user_input, user_output)
+        basket = Basket(self.user_input, self.user_output)
         basket.updateBasket(self.game, "add")
-        self.assertEqual("Game added successfully.", user_output.getOutputList()[-1])
+        self.assertEqual("Game added successfully.", self.user_output.getOutputList()[-1])
+
+    def test_addOutOfStockGameToBasket(self):
+        basket = Basket(self.user_input, self.user_output)
+        out_of_stock_game = Game("1", "Anno 1701", 8.99, 0)
+        basket_size = len(basket.getBasketList())
+        basket.updateBasket(out_of_stock_game, "add")
+        self.assertEqual(basket_size, len(basket.getBasketList()))
+
+    def test_addOutOfStockGameToBasketOutput(self):
+        basket = Basket(self.user_input, self.user_output)
+        out_of_stock_game = Game("1", "Anno 1701", 8.99, 0)
+        basket.updateBasket(out_of_stock_game, "add")
+        output_message = "Game not added; game may already be in basket."
+        self.assertEqual(output_message, self.user_output.getOutputList()[-1])
 
     def test_addExistingGameToBasketOutput(self):
-        user_input = ConsoleInput(False)
-        user_output = TestOutput()
-        basket = Basket(user_input, user_output)
+        basket = Basket(self.user_input, self.user_output)
         basket.updateBasket(self.game, "add")
         basket.updateBasket(self.game, "add")
         output_message = "Game not added; game may already be in basket."
-        self.assertEqual(output_message, user_output.getOutputList()[-1])
+        self.assertEqual(output_message, self.user_output.getOutputList()[-1])
 
     def test_addMultipleGamesToBasket(self):
-        user_input = ConsoleInput(False)
-        user_output = TestOutput()
-        basket = Basket(user_input, user_output)
+        basket = Basket(self.user_input, self.user_output)
         basket.updateBasket(self.game, "add")
         basket.updateBasket(self.game2, "add")
         basket.updateBasket(self.game3, "add")
         self.assertEqual(3, len(basket.getBasketList()))
 
     def test_removeExistingGameFromBasket(self):
-        user_input = ConsoleInput(False)
-        user_output = TestOutput()
-        basket = Basket(user_input, user_output)
+        basket = Basket(self.user_input, self.user_output)
         basket.updateBasket(self.game, "add")
         basket_size = len(basket.getBasketList())
         basket.updateBasket(self.game, "remove")
         self.assertEqual(basket_size - 1, len(basket.getBasketList()))
 
     def test_removeExistingGameFromBasketOutput(self):
-        user_input = ConsoleInput(False)
-        user_output = TestOutput()
-        basket = Basket(user_input, user_output)
+        basket = Basket(self.user_input, self.user_output)
         basket.updateBasket(self.game, "add")
         basket.updateBasket(self.game, "remove")
-        self.assertEqual("Game removed successfully.", user_output.getOutputList()[-1])
+        self.assertEqual("Game removed successfully.", self.user_output.getOutputList()[-1])
 
     def test_removeGameFromEmptyBasket(self):
-        user_input = ConsoleInput(False)
-        user_output = TestOutput()
-        basket = Basket(user_input, user_output)
+        basket = Basket(self.user_input, self.user_output)
         basket.updateBasket(self.game, "remove")
-        self.assertEqual("Game not in basket.", user_output.getOutputList()[-1])
+        self.assertEqual("Game not in basket.", self.user_output.getOutputList()[-1])
 
     def test_removeMissingGameFromBasket(self):
-        user_input = ConsoleInput(False)
-        user_output = TestOutput()
-        basket = Basket(user_input, user_output)
+        basket = Basket(self.user_input, self.user_output)
         basket.updateBasket(self.game, "add")
         basket_size = len(basket.getBasketList())
         basket.updateBasket(self.game2, "remove")
         self.assertEqual(basket_size, len(basket.getBasketList()))
 
     def test_removeMissingGameFromBasketOutput(self):
-        user_input = ConsoleInput(False)
-        user_output = TestOutput()
-        basket = Basket(user_input, user_output)
+        basket = Basket(self.user_input, self.user_output)
         basket.updateBasket(self.game2, "remove")
-        self.assertEqual("Game not in basket.", user_output.getOutputList()[-1])
+        self.assertEqual("Game not in basket.", self.user_output.getOutputList()[-1])
 
     def test_removeMultipleGamesFromBasket(self):
-        user_input = ConsoleInput(False)
-        user_output = TestOutput()
-        basket = Basket(user_input, user_output)
+        basket = Basket(self.user_input, self.user_output)
         basket.updateBasket(self.game, "add")
         basket.updateBasket(self.game2, "add")
         basket.updateBasket(self.game3, "add")
+
         basket.updateBasket(self.game, "remove")
         basket.updateBasket(self.game2, "remove")
         basket.updateBasket(self.game3, "remove")
@@ -198,66 +191,6 @@ class BasketTest(unittest.TestCase):
     def test_FindGameInEmptyBasket(self):
         basket = Basket(self.user_input, self.user_output)
         self.assertEqual(-1, basket.findGameInBasket(self.game))
-
-    # calculateBasketTotal
-
-    def test_CalculateBasketTotal(self):
-        basket = Basket(self.user_input, self.user_output)
-        basket.updateBasket(self.game, "add")
-        basket.updateBasket(self.game2, "add")
-        basket.calcualateBasketTotal()
-        self.assertEqual(18.98, basket.getBasketTotal())
-
-    def test_CalculateEmptyBasketTotal(self):
-        basket = Basket(self.user_input, self.user_output)
-        basket.calcualateBasketTotal()
-        self.assertEqual(0, basket.getBasketTotal())
-
-    def test_CalculateUpdatedBasketTotal(self):
-        basket = Basket(self.user_input, self.user_output)
-        basket.updateBasket(self.game, "add")
-        basket.calcualateBasketTotal()
-        basket_total = basket.getBasketTotal()
-        basket.updateBasket(self.game2, "add")
-        basket.calcualateBasketTotal()
-        self.assertNotEqual(basket_total, basket.getBasketTotal())
-
-    # displayBasket
-
-    def test_displayBasketOutput(self):
-        basket = Basket(self.user_input, self.user_output)
-        basket.updateBasket(self.game, "add")
-        basket.updateBasket(self.game2, "add")
-        basket.displayBasket()
-        self.assertEqual("Basket total: £18.98", self.user_output.getOutputList()[-1])
-
-    def test_displayEmptyBasketOutput(self):
-        basket = Basket(self.user_input, self.user_output)
-        basket.displayBasket()
-        self.assertEqual("Basket total: £0.0", self.user_output.getOutputList()[-1])
-
-    # purchaseBasket
-
-    def test_purchaseBasket(self):
-        basket = Basket(self.user_input, self.user_output)
-        basket.updateBasket(self.game, "add")
-        basket.updateBasket(self.game2, "add")
-        basket.purchaseBasket(self.game_data)
-        self.assertEqual(0, len(basket.getBasketList()))
-
-    def test_purchaseBasketOutput(self):
-        basket = Basket(self.user_input, self.user_output)
-        basket.updateBasket(self.game, "add")
-        basket.updateBasket(self.game2, "add")
-        basket.purchaseBasket(self.game_data)
-        self.assertEqual("Your order:", self.user_output.getOutputList()[-3])
-
-    def test_purchaseEmptyBasketOutput(self):
-        basket = Basket(self.user_input, self.user_output)
-        basket.purchaseBasket(self.game_data)
-        self.assertEqual("Your basket is emtpy.", self.user_output.getOutputList()[-1])
-
-
 
 
 if __name__ == '__main__':

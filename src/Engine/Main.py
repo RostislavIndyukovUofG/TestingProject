@@ -1,10 +1,10 @@
 from src.Data.DataInputFile import DataInputFile
-from src.Data.DataInputStub import DataInputStub
 from src.Display.ConsoleInput import ConsoleInput
 from src.Display.ConsoleOutput import ConsoleOutput
 from src.Engine.Basket import Basket
 from src.Engine.CommandHandler import CommandHandler
 from src.Engine.Game import Game
+from src.Engine.GameData import GameData
 
 
 class Main:
@@ -24,38 +24,19 @@ class Main:
             self.user_output = user_output
 
         self.file_path = "resources/gameData.csv"
-        self.basket = Basket(self.user_input, self.user_output)
-        self.command_handler = CommandHandler(self.user_input, self.user_output, self.basket, self)
-        self.game_data = []
         self.header = []
+        self.game_data = None
+        self.basket = None
+        self.command_handler = None
 
-    def setDataFilePath(self, file_path):
-        self.file_path = file_path
-
-    def setDataInputType(self, input_type):
-        self.input_type = input_type
-
-    def setUserInput(self, user_input):
-        self.user_input = user_input
-
-    def setUserOutput(self, user_output):
-        self.user_output = user_output
-
-    def getGameData(self):
-        return self.game_data
-
-    def getGameFromGameId(self, game_id):
-        for game in self.game_data:
-            if game_id == game.getGameID():
-                return game
-
-    def getGameDetails(self, game_id):
-        game = self.getGameFromGameId(game_id)
-        return game.getGameDetails()
+    def initialiseHelperClasses(self):
+        self.setGameDataAndHeader()
+        self.basket = Basket(self.user_input, self.user_output, self.game_data)
+        self.command_handler = CommandHandler(self.user_input, self.user_output, self.basket, self.game_data)
 
     def setGameDataAndHeader(self):
         file_data = self.input_type.getFileData(self.file_path, self.user_output)
-        game_data = []
+        game_data_list = []
         self.header = file_data[0]
 
         for row in file_data[1:]:
@@ -64,22 +45,21 @@ class Main:
             price = float(row[2])
             stock = int(row[3])
             temp_game = Game(game_id, game_name, price, stock)
-            game_data.append(temp_game)
-        self.game_data = game_data
+            game_data_list.append(temp_game)
+        self.game_data = GameData(self.user_input, self.user_output)
+        self.game_data.game_data_list = game_data_list
+
+    def getGameDetails(self, game_id):
+        game = self.game_data.getGameFromGameId(game_id)
+        return game.getGameDetails()
 
     def displayInitialMessage(self):
         self.user_output.displayOutput("Welcome to the Game Store.")
 
-    def displayStock(self):
-        self.user_output.displayOutput("The current games in stock are:")
-        for game in self.game_data:
-            game.displayGameDetails(self.user_output)
-        print()
-
 
 def main():
     main = Main()
-    main.setGameDataAndHeader()
+    main.initialiseHelperClasses()
     main.displayInitialMessage()
     close = main.command_handler.handleUserCommands()
 

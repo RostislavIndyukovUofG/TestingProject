@@ -12,36 +12,24 @@ class Game:
         else:
             self.stock = 0
 
-    def getGameID(self):
-        return self.game_id
-
-    def getGameName(self):
-        return self.game_name
-
-    def getPrice(self):
-        return self.price
-
-    def getStock(self):
-        return self.stock
-
     def getGameDetails(self):
-        game_id = self.getGameID()
-        game_name = self.getGameName()
-        price = self.getPrice()
-        stock = self.getStock()
+        game_id = self.game_id
+        game_name = self.game_name
+        price = self.price
+        stock = self.stock
         game_details = [game_id, game_name, price, stock]
         return game_details
 
     def displayGameDetails(self, user_output):
-        if len(self.getGameName()) > 0:
-            if self.getStock() > 0:
-                user_output.displayOutput("Game Id:\t" + self.getGameID())
-                user_output.displayOutput("Game Name:\t" + self.getGameName())
-                user_output.displayOutput("Price:\t£" + str(self.getPrice()))
-                user_output.displayOutput("Stock:\t" + str(self.getStock()))
+        if len(self.game_name) > 0:
+            if self.stock > 0:
+                user_output.displayOutput("Game Id:\t" + self.game_id)
+                user_output.displayOutput("Game Name:\t" + self.game_name)
+                user_output.displayOutput("Price:\t£" + str(self.price))
+                user_output.displayOutput("Stock:\t" + str(self.stock))
         else:
             user_output.displayOutput("Game not found.")
         print()
 
     def displayGame(self, user_output):
-        user_output.displayOutput(self.getGameName() + "\t\t£" + str(self.getPrice()))
+        user_output.displayOutput(self.game_name + "\t\t£" + str(self.price))

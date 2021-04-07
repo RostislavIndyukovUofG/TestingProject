@@ -3,19 +3,18 @@ from src.Engine.UserCommands import UserCommands
 
 class CommandHandler:
 
-    def __init__(self, user_input, user_output, basket, main):
+    def __init__(self, user_input, user_output, basket, game_data):
         self.user_input = user_input
         self.user_output = user_output
         self.basket = basket
-        self.main = main
+        self.game_data = game_data
 
     def handleUserCommands(self):
         UserCommands.displayCommands(self.user_output)
-        active = True
-        close = True
+        close = False
         game_id = ""
 
-        while active:
+        while not close:
             user_command = self.getUserCommand()
 
             operation = user_command[0]
@@ -23,28 +22,28 @@ class CommandHandler:
                 game_id = user_command[1]
 
             if operation in UserCommands.LIST.value[1]:
-                self.main.displayStock()
+                self.game_data.displayGameData()
 
             elif operation in UserCommands.ADD.value[1]:
-                game_to_add = self.main.getGameFromGameId(game_id)
+                game_to_add = self.game_data.getGameFromGameId(game_id)
                 self.basket.updateBasket(game_to_add, "add")
 
             elif operation in UserCommands.BASKET.value[1]:
                 self.basket.displayBasket()
 
             elif operation in UserCommands.REMOVE.value[1]:
-                game_to_remove = self.main.getGameFromGameId(game_id)
+                game_to_remove = self.game_data.getGameFromGameId(game_id)
                 self.basket.updateBasket(game_to_remove, "remove")
 
             elif operation in UserCommands.BUY.value[1]:
-                self.basket.purchaseBasket(self.main.getGameData())
+                self.basket.purchaseBasket(self.game_data.game_data_list)
 
             elif operation in UserCommands.HELP.value[1]:
                 UserCommands.displayCommands(self.user_output)
 
             elif operation in UserCommands.EXIT.value[1]:
                 self.user_output.displayOutput("Closing program.")
-                active = False
+                close = True
 
         return close
 
