@@ -49,10 +49,6 @@ class Main:
         self.game_data = GameData(self.user_input, self.user_output)
         self.game_data.game_data_list = game_data_list
 
-    def getGameDetails(self, game_id):
-        game = self.game_data.getGameFromGameId(game_id)
-        return game.getGameDetails()
-
     def displayInitialMessage(self):
         self.user_output.displayOutput("Welcome to the Game Store.")
 

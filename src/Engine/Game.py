@@ -6,19 +6,9 @@ class Game:
         self.price = price
         self.stock = stock
 
-    def setStock(self, stock):
-        if stock > 0:
+    def reduceStock(self):
+        if self.stock > 0:
             self.stock -= 1
-        else:
-            self.stock = 0
-
-    def getGameDetails(self):
-        game_id = self.game_id
-        game_name = self.game_name
-        price = self.price
-        stock = self.stock
-        game_details = [game_id, game_name, price, stock]
-        return game_details
 
     def displayGameDetails(self, user_output):
         if len(self.game_name) > 0:

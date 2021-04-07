@@ -64,7 +64,7 @@ class Basket:
 
             for basket_game in self.basket_list:
                 basket_game.displayGame(self.user_output)
-                self.game_data.reduceGameStock(basket_game.game_id)
+                basket_game.reduceStock()
 
             self.basket_list = []
             self.calcualateBasketTotal()

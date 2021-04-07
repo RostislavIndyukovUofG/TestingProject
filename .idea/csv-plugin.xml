@@ -52,6 +52,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\Engine\Game.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\Engine\GameData.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\Engine\Main.py">
           <value>
             <Attribute>

@@ -1,6 +1,6 @@
 from enum import Enum
 
-# possible user commands, contain list of 3 attributes:
+# user commands, contain list of 3 attributes:
 #   list: keyword and description to display
 #   list: accepted user options
 #   int: number of parts e.g. keyword + game id = 2
