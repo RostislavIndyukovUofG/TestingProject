@@ -1,27 +1,31 @@
 from enum import Enum
 
+# possible user commands, contain list of 3 attributes:
+#   list: keyword and description to display
+#   list: accepted user options
+#   int: number of parts e.g. keyword + game id = 2
 
 class UserCommands(Enum):
     LIST = [["list", "view stock"],
-            ["list", "l"]]
+            ["list", "l"], 1]
 
     ADD = [["add [game ID]", "add selected game to basket"],
-           ["add", "a"]]
-
-    BASKET = [["basket", "view basket"],
-              ["basket", "b"]]
+           ["add", "a"], 2]
 
     REMOVE = [["remove [game ID]", "remove selected game from basket"],
-              ["remove", "r"]]
+              ["remove", "r"], 2]
 
-    BUY = [["purchase", "purchase items in basket"],
-           ["purchase", "p"]]
+    BASKET = [["basket", "view basket"],
+              ["basket", "b"], 1]
+
+    PURCHASE = [["purchase", "purchase items in basket"],
+           ["purchase", "p"], 1]
 
     HELP = [["help", "show available commands"],
-            ["help", "h"]]
+            ["help", "h"], 1]
 
     EXIT = [["exit", "leave program"],
-            ["exit", "e"]]
+            ["exit", "e"], 1]
 
     @classmethod
     def displayCommandRow(cls, command_details, keyword_length, user_output):

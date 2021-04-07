@@ -28,15 +28,15 @@ class CommandHandler:
                 game_to_add = self.game_data.getGameFromGameId(game_id)
                 self.basket.updateBasket(game_to_add, "add")
 
-            elif operation in UserCommands.BASKET.value[1]:
-                self.basket.displayBasket()
-
             elif operation in UserCommands.REMOVE.value[1]:
                 game_to_remove = self.game_data.getGameFromGameId(game_id)
                 self.basket.updateBasket(game_to_remove, "remove")
 
-            elif operation in UserCommands.BUY.value[1]:
-                self.basket.purchaseBasket(self.game_data.game_data_list)
+            elif operation in UserCommands.BASKET.value[1]:
+                self.basket.displayBasket()
+
+            elif operation in UserCommands.PURCHASE.value[1]:
+                self.basket.purchaseBasket()
 
             elif operation in UserCommands.HELP.value[1]:
                 UserCommands.displayCommands(self.user_output)
@@ -50,26 +50,39 @@ class CommandHandler:
     def getUserCommand(self):
         is_valid_command = False
         while not is_valid_command:
-            try:
-                command_list = []
-                command = self.user_input.getInput("Enter a command: ")
-                command_list = self.formatCommand(command)
-                is_valid_command = self.isValidUserCommand(command_list[0])
+            command = self.user_input.getInput("Enter a command: ")
+            command_list = self.formatCommand(command)
+            is_valid_command = self.isValidCommand(command_list)
 
-                if not is_valid_command:
-                    raise ValueError
-            except:
+            if is_valid_command:
+                is_valid_command = self.isValidGameId(command_list)
+
+            if not is_valid_command:
                 self.user_output.displayOutput("Invalid command. Type help to see available commands.")
 
         return command_list
 
     def formatCommand(self, command):
-        command.strip()
+        while command[0] == " " or command[-1] == " ":
+            command = command.strip()
+
         command_list = command.split(" ")
         return command_list
 
-    def isValidUserCommand(self, command_operation):
+    def isValidCommand(self, user_command_list):
         for command in UserCommands:
-            if command_operation in command.value[1]:
+            user_command_exists = user_command_list[0] in command.value[1]
+            correct_size = command.value[2] == len(user_command_list)
+
+            if user_command_exists and correct_size:
                 return True
         return False
+
+    def isValidGameId(self, command_list):
+        if len(command_list) > 1:
+            game_id = command_list[1]
+
+            if self.game_data.getGameFromGameId(game_id) is None:
+                self.user_output.displayOutput("Invalid game id. Type list to view the available games.")
+                return False
+        return True

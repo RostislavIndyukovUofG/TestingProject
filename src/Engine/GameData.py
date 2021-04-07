@@ -18,6 +18,7 @@ class GameData:
         for game in self.game_data_list:
             if game_id == game.game_id:
                 return game
+        return None
 
     def reduceGameStock(self, target_game_id):
         for i, game in enumerate(self.game_data_list):
