@@ -135,12 +135,12 @@ class BasketTest(unittest.TestCase):
         basket.updateBasket(self.game, "add")
         basket.updateBasket(self.game2, "add")
         basket.displayBasket()
-        self.assertEqual("Basket total: £18.98", self.user_output.output_list[-1])
+        self.assertEqual("\nTotal: £18.98", self.user_output.output_list[-1])
 
     def test_displayEmptyBasketOutput(self):
         basket = Basket(self.user_input, self.user_output, self.game_data)
         basket.displayBasket()
-        self.assertEqual("Basket total: £0.0", self.user_output.output_list[-1])
+        self.assertEqual("\nTotal: £0.0", self.user_output.output_list[-1])
 
     # purchaseBasket
 
@@ -156,7 +156,8 @@ class BasketTest(unittest.TestCase):
         basket.updateBasket(self.game, "add")
         basket.updateBasket(self.game2, "add")
         basket.purchaseBasket()
-        self.assertEqual("Your order:", self.user_output.output_list[-3])
+        output_message = "\nThank you for your purchase!\n"
+        self.assertEqual(output_message, self.user_output.output_list[-1])
 
     def test_purchaseEmptyBasketOutput(self):
         basket = Basket(self.user_input, self.user_output, self.game_data)

@@ -16,7 +16,7 @@ class GameData:
         return None
 
     def displayGameData(self):
-        self.user_output.displayOutput("The current games in stock are:")
+        self.user_output.displayOutput("\nThe current games in stock are:\n")
 
         for game in self.game_data_list:
             game.displayGameDetails(self.user_output)

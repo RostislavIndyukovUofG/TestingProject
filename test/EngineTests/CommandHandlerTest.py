@@ -104,13 +104,14 @@ class CommandHandlerTest(unittest.TestCase):
         self.basket.setBasketList([])
         self.basket.calcualateBasketTotal()
         close = self.command_handler.handleUserCommands()
-        self.assertEqual("Basket total: £0.0", self.user_output.getOutputList()[-2])
+        self.assertEqual("\nTotal: £0.0", self.user_output.getOutputList()[-2])
 
     def test_handleValidPurchaseCommand(self):
         self.basket.updateBasket(self.game_data.getGameDataList()[0], "add")
         self.user_input.input_list = ["purchase", "exit"]
         close = self.command_handler.handleUserCommands()
-        self.assertIn("Anno 1701", self.user_output.getOutputList()[-2])
+        output_message = "\nThank you for your purchase!\n"
+        self.assertIn(output_message, self.user_output.getOutputList()[-2])
 
     def test_handleValidPurchaseCommandWithEmptyBasketOutput(self):
         self.user_input.input_list = ["purchase", "exit"]
