@@ -46,6 +46,7 @@ class Main:
             stock = int(row[3])
             temp_game = Game(game_id, game_name, price, stock)
             game_data_list.append(temp_game)
+
         self.game_data = GameData(self.user_input, self.user_output)
         self.game_data.game_data_list = game_data_list
 

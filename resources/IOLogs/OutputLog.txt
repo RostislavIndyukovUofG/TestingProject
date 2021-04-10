@@ -7,6 +7,3 @@ basket:           view basket
 purchase:         purchase items in basket
 help:             show available commands
 exit:             leave program
-Invalid command. Type help to see available commands.
-Your basket is emtpy.
-Closing program.
