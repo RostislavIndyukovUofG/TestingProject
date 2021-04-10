@@ -94,6 +94,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\test\EngineTests\GameTest.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\test\EngineTests\UpdateBasketTest.py">
           <value>
             <Attribute>

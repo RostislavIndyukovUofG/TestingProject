@@ -1,7 +1,6 @@
 from src.Data.DataInputFile import DataInputFile
 from src.Display.ConsoleInput import ConsoleInput
 from src.Display.ConsoleOutput import ConsoleOutput
-from src.Engine.Basket import Basket
 from src.Engine.CommandHandler import CommandHandler
 from src.Engine.Game import Game
 from src.Engine.GameData import GameData
@@ -10,34 +9,31 @@ from src.Engine.GameData import GameData
 class Main:
 
     def __init__(self, input_type=None, user_input=None, user_output=None):
-        if input_type == None:
+        if input_type is None:
             self.input_type = DataInputFile()
         else:
             self.input_type = input_type
-        if user_input == None:
+        if user_input is None:
             self.user_input = ConsoleInput(True)
         else:
             self.user_input = user_input
-        if user_output == None:
+        if user_output is None:
             self.user_output = ConsoleOutput(True)
         else:
             self.user_output = user_output
 
         self.file_path = "resources/gameData.csv"
-        self.header = []
         self.game_data = None
         self.basket = None
         self.command_handler = None
 
     def initialiseHelperClasses(self):
-        self.setGameDataAndHeader()
-        self.basket = Basket(self.user_input, self.user_output, self.game_data)
-        self.command_handler = CommandHandler(self.user_input, self.user_output, self.basket, self.game_data)
+        self.setGameData()
+        self.command_handler = CommandHandler(self.user_input, self.user_output, self.game_data)
 
-    def setGameDataAndHeader(self):
+    def setGameData(self):
         file_data = self.input_type.getFileData(self.file_path, self.user_output)
         game_data_list = []
-        self.header = file_data[0]
 
         for row in file_data[1:]:
             game_id = row[0]

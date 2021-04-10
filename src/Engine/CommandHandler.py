@@ -1,25 +1,31 @@
+from src.Engine.Basket import Basket
 from src.Engine.UserCommands import UserCommands
 
 
 class CommandHandler:
 
-    def __init__(self, user_input, user_output, basket, game_data):
+    def __init__(self, user_input, user_output, game_data):
         self.user_input = user_input
         self.user_output = user_output
-        self.basket = basket
         self.game_data = game_data
+        self.basket = Basket(self.user_input, self.user_output, self.game_data)
 
     def handleUserCommands(self):
-        UserCommands.displayCommands(self.user_output)
         close = False
         game_id = ""
+        UserCommands.displayCommands(self.user_output)
 
         while not close:
-            user_command = self.getUserCommand()
 
+            # set up user command
+
+            user_command = self.getUserCommand()
             operation = user_command[0]
+
             if len(user_command) > 1:
                 game_id = user_command[1]
+
+            # handle user command
 
             if operation in UserCommands.LIST.value[1]:
                 self.game_data.displayGameData()
@@ -48,17 +54,19 @@ class CommandHandler:
         return close
 
     def getUserCommand(self):
+        command_list = []
         is_valid_command = False
+
         while not is_valid_command:
             command = self.user_input.getInput("Enter a command: ")
             command_list = self.formatCommand(command)
             is_valid_command = self.isValidCommand(command_list)
 
-            if is_valid_command:
-                is_valid_command = self.isValidGameId(command_list)
-
             if not is_valid_command:
                 self.user_output.displayOutput("Invalid command. Type help to see available commands.")
+
+            if is_valid_command:
+                is_valid_command = self.isValidGameId(command_list)
 
         return command_list
 
@@ -72,10 +80,11 @@ class CommandHandler:
     def isValidCommand(self, user_command_list):
         for command in UserCommands:
             user_command_exists = user_command_list[0] in command.value[1]
-            correct_size = command.value[2] == len(user_command_list)
+            correct_size = len(user_command_list) == command.value[2]
 
             if user_command_exists and correct_size:
                 return True
+
         return False
 
     def isValidGameId(self, command_list):
@@ -85,4 +94,5 @@ class CommandHandler:
             if self.game_data.getGameFromGameId(game_id) is None:
                 self.user_output.displayOutput("Invalid game id. Type list to view the available games.")
                 return False
+
         return True

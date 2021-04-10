@@ -19,7 +19,7 @@ class GameDataTest(unittest.TestCase):
 
     def test_displayGameData(self):
         self.game_data.displayGameData()
-        self.assertIn("Stock", self.user_output.output_list[-1])
+        self.assertIn("Stock", self.user_output.getOutputList()[-1])
 
     def test_getGameFromGameId(self):
         game = self.game_data.getGameFromGameId("1")

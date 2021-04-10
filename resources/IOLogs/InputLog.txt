@@ -1,0 +1,10 @@
+list
+help
+add 1
+r 2
+add 2
+b
+r 2
+help
+p
+exit

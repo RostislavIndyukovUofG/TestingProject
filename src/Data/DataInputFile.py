@@ -17,12 +17,14 @@ class DataInputFile(IDataInput):
         return file_data
 
     def getFileData(self, file_path, user_output):
+        file_data = []
         try:
             file_data = self.readRawData(file_path)
 
             if len(file_data) == 0:
                 raise Exception
-        except:
+
+        except (FileNotFoundError, Exception):
             user_output.displayOutput("An error occurred. Switching to stub data.")
             stub = DataInputStub()
             file_data = stub.readRawData(file_path)

@@ -1,11 +1,17 @@
 class Basket:
 
     def __init__(self, user_input, user_output, game_data):
-        self.basket_list = []
-        self.basket_total = 0.00
         self.user_input = user_input
         self.user_output = user_output
+        self.basket_list = []
+        self.basket_total = 0.00
         self.game_data = game_data
+
+    def getBasketList(self):
+        return self.basket_list
+
+    def setBasketList(self, basket_list):
+        self.basket_list = basket_list
 
     def updateBasket(self, game, operation):
         game_position = self.findGameInBasket(game)
@@ -16,11 +22,11 @@ class Basket:
             self.removeFromBasket(game_position, game)
 
     def findGameInBasket(self, target_game):
-        target_game_id = target_game.game_id
+        target_game_id = target_game.getGameId()
         game_position = -1
 
         for i, basket_game in enumerate(self.basket_list):
-            basket_game_id = basket_game.game_id
+            basket_game_id = basket_game.getGameId()
 
             if basket_game_id == target_game_id:
                 game_position = i
@@ -28,10 +34,11 @@ class Basket:
         return game_position
 
     def addToBasket(self, game_position, game_to_add):
-        if game_position < 0 and game_to_add.stock > 0:
+        if game_position < 0 and game_to_add.getStock() > 0:
             self.basket_list.append(game_to_add)
             self.calcualateBasketTotal()
             self.user_output.displayOutput("Game added successfully.")
+
         else:
             self.user_output.displayOutput("Game not added; game may already be in basket.")
 
@@ -47,7 +54,7 @@ class Basket:
         self.basket_total = 0.00
 
         for game in self.basket_list:
-            self.basket_total += game.price
+            self.basket_total += game.getPrice()
 
     def displayBasket(self):
         self.user_output.displayOutput("Your basket:")
@@ -68,5 +75,6 @@ class Basket:
 
             self.basket_list = []
             self.calcualateBasketTotal()
+
         else:
             self.user_output.displayOutput("Your basket is emtpy.")

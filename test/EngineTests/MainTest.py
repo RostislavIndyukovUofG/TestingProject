@@ -19,17 +19,12 @@ class MainTest(unittest.TestCase):
 
     def test_setGameDataMock(self):
         DataInputStub.getFileData = MagicMock(return_value=self.data_list)
-        self.main.setGameDataAndHeader()
-        self.assertEqual(2, len(self.main.game_data.game_data_list))
-
-    def test_setHeaderMock(self):
-        DataInputStub.getFileData = MagicMock(return_value=self.data_list)
-        self.main.setGameDataAndHeader()
-        self.assertEqual(self.data_list[0], self.main.header)
+        self.main.setGameData()
+        self.assertEqual(2, len(self.main.game_data.getGameDataList()))
 
     def test_displayInitialMessage(self):
         self.main.displayInitialMessage()
-        self.assertEqual("Welcome to the Game Store.", self.user_output.output_list[-1])
+        self.assertEqual("Welcome to the Game Store.", self.user_output.getOutputList()[-1])
 
 
 if __name__ == '__main__':

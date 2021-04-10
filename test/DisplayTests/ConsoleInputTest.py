@@ -12,9 +12,8 @@ class ConsoleInputTest(unittest.TestCase):
     output_list = LogFileReader.readFromLogFile("../../resources/IOLogs/OutputLog.txt")
 
     main = Main(DataInputFile(), TestInput(), TestOutput())
-    main.user_input.input_list = input_list
-    main.user_output.output_list = output_list
-
+    main.user_input.setInputList(input_list)
+    main.user_output.setOutputList(output_list)
 
     def test_UserInputFaking(self):
         self.main.initialiseHelperClasses()

@@ -5,6 +5,7 @@ from enum import Enum
 #   list: accepted user options
 #   int: number of parts e.g. keyword + game id = 2
 
+
 class UserCommands(Enum):
     LIST = [["list", "view stock"],
             ["list", "l"], 1]
@@ -19,7 +20,7 @@ class UserCommands(Enum):
               ["basket", "b"], 1]
 
     PURCHASE = [["purchase", "purchase items in basket"],
-           ["purchase", "p"], 1]
+                ["purchase", "p"], 1]
 
     HELP = [["help", "show available commands"],
             ["help", "h"], 1]
@@ -43,15 +44,18 @@ class UserCommands(Enum):
 
         for command in UserCommands:
             cls.displayCommandRow(command.value, keyword_length, user_output)
+
         print()
 
     @classmethod
     def getLongestWordLength(cls):
         longest_word = 0
+
         for command in UserCommands:
             command_keyword = command.value[0][0]
             keyword_length = len(command_keyword)
 
             if keyword_length > longest_word:
                 longest_word = keyword_length
+
         return longest_word

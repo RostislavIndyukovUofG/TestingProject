@@ -25,7 +25,7 @@ class DataInputTest(unittest.TestCase):
         main.file_path = file_path
         main.initialiseHelperClasses()
         output_message = "An error occurred. Switching to stub data."
-        self.assertEqual(output_message, self.user_output.getOutputList()[-1])
+        self.assertEqual(output_message, self.user_output.output_list[-1])
 
     def test_readDataFromEmptyFile(self):
         main = Main(DataInputFile(), self.user_input, self.user_output)
@@ -33,7 +33,7 @@ class DataInputTest(unittest.TestCase):
         main.file_path = file_path
         main.initialiseHelperClasses()
         output_message = "An error occurred. Switching to stub data."
-        self.assertEqual(output_message, self.user_output.getOutputList()[-1])
+        self.assertEqual(output_message, self.user_output.output_list[-1])
 
     def test_readDataFromStub(self):
         main = Main(DataInputStub(), self.user_input, self.user_output)
