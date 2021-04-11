@@ -4,7 +4,7 @@ from src.Data.IDataInput import IDataInput
 class DataInputStub(IDataInput):
 
     def readRawData(self, file_path):
-        header = ["GameID", "Game Name", "Price", "Stock"]
+        header = ["Game Id", "Game Name", "Price", "Stock"]
         game1 = ["1", "Xbox Video Game", "4.99", "3"]
         game2 = ["2", "Playstation Video Game", "5.99", "3"]
         game3 = ["3", "PC Video Game", "7.99", "3"]

@@ -23,6 +23,7 @@ class Main:
             self.user_output = user_output
 
         self.file_path = "resources/gameData.csv"
+        self.header = []
         self.game_data = None
         self.basket = None
         self.command_handler = None
@@ -36,11 +37,12 @@ class Main:
         game_data_list = []
 
         for row in file_data[1:]:
-            game_id = row[0]
-            game_name = row[1]
-            price = float(row[2])
-            stock = int(row[3])
-            temp_game = Game(game_id, game_name, price, stock)
+            game_details = {}
+            game_details["Game Id"] = row[0]
+            game_details["Game Name"] = row[1]
+            game_details["Price"] = float(row[2])
+            game_details["Stock"] = int(row[3])
+            temp_game = Game(game_details)
             game_data_list.append(temp_game)
 
         self.game_data = GameData(self.user_input, self.user_output)
