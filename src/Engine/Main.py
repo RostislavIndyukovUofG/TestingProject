@@ -23,9 +23,7 @@ class Main:
             self.user_output = user_output
 
         self.file_path = "resources/gameData.csv"
-        self.header = []
         self.game_data = None
-        self.basket = None
         self.command_handler = None
 
     def initialiseHelperClasses(self):

@@ -44,7 +44,6 @@ class UserCommands(Enum):
 
         for command in UserCommands:
             cls.displayCommandRow(command.value, keyword_length, user_output)
-
         print()
 
     @classmethod
