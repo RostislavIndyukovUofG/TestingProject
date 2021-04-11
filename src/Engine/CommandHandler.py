@@ -79,8 +79,11 @@ class CommandHandler:
 
     def isValidCommand(self, user_command_list):
         for command in UserCommands:
-            user_command_exists = user_command_list[0] in command.value[1]
-            correct_size = len(user_command_list) == command.value[2]
+            valid_options = command.value[1]
+            command_size = command.value[2]
+
+            user_command_exists = user_command_list[0] in valid_options
+            correct_size = len(user_command_list) == command_size
 
             if user_command_exists and correct_size:
                 return True
