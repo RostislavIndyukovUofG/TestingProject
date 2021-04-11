@@ -39,8 +39,10 @@ class Basket:
         if game_position < 0 and game_to_add.getStock() > 0:
             self.basket_list.append(game_to_add)
             self.user_output.displayOutput("Game added successfully.")
+        elif game_position >= 0:
+            self.user_output.displayOutput("Game is already in basket.")
         else:
-            self.user_output.displayOutput("Game not added; game may already be in basket.")
+            self.user_output.displayOutput("Game is out of stock.")
 
     def removeFromBasket(self, game_position, game_to_remove):
         if game_position >= 0:

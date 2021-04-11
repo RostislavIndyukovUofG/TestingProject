@@ -47,15 +47,14 @@ class BasketTest(unittest.TestCase):
         basket = Basket(self.user_input, self.user_output)
         out_of_stock_game = Game({"Game Id": "1", "Game Name": "Anno 1701", "Price": 8.99, "Stock": 0})
         basket.updateBasket(out_of_stock_game, "add")
-        output_message = "Game not added; game may already be in basket."
+        output_message = "Game is out of stock."
         self.assertEqual(output_message, self.user_output.getOutputList()[-1])
 
     def test_addExistingGameToBasketOutput(self):
         basket = Basket(self.user_input, self.user_output)
         basket.updateBasket(self.game, "add")
         basket.updateBasket(self.game, "add")
-        output_message = "Game not added; game may already be in basket."
-        self.assertEqual(output_message, self.user_output.getOutputList()[-1])
+        self.assertEqual("Game is already in basket.", self.user_output.getOutputList()[-1])
 
     def test_addMultipleGamesToBasket(self):
         basket = Basket(self.user_input, self.user_output)
@@ -163,6 +162,7 @@ class BasketTest(unittest.TestCase):
         basket = Basket(self.user_input, self.user_output)
         basket.purchaseBasket()
         self.assertEqual("Your basket is emtpy.", self.user_output.output_list[-1])
+
 
 if __name__ == '__main__':
     unittest.main()
