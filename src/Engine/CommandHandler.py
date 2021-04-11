@@ -8,7 +8,7 @@ class CommandHandler:
         self.user_input = user_input
         self.user_output = user_output
         self.game_data = game_data
-        self.basket = Basket(self.user_input, self.user_output, self.game_data)
+        self.basket = Basket(self.user_input, self.user_output)
 
     def handleUserCommands(self):
         close = False

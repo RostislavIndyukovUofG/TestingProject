@@ -1,11 +1,10 @@
 class Basket:
 
-    def __init__(self, user_input, user_output, game_data):
+    def __init__(self, user_input, user_output):
         self.user_input = user_input
         self.user_output = user_output
         self.basket_list = []
         self.basket_total = 0.00
-        self.game_data = game_data
 
     def getBasketList(self):
         return self.basket_list
