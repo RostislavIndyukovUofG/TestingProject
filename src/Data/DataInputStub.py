@@ -5,8 +5,8 @@ class DataInputStub(IDataInput):
 
     def readRawData(self, file_path):
         header = ["Game Id", "Game Name", "Price", "Stock"]
-        game1 = ["1", "Xbox Video Game", "4.99", "3"]
-        game2 = ["2", "Playstation Video Game", "5.99", "3"]
+        game1 = ["1", "X-Destroyer Video Game", "4.99", "3"]
+        game2 = ["2", "Planetscape Video Game", "5.99", "3"]
         game3 = ["3", "PC Video Game", "7.99", "3"]
 
         file_data = [header, game1, game2, game3]

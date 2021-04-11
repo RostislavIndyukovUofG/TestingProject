@@ -8,49 +8,77 @@ purchase:         purchase items in basket
 help:             show available commands
 exit:             leave program
 
-Your basket:
+The current games in stock are:
 
-
-Total: £0.0
+Game Id:	1
+Game Name:	City Builder
+Price:	£8.99
+Stock:	4
+Game Id:	2
+Game Name:	Survivalist
+Price:	£9.99
+Stock:	5
+Game Id:	3
+Game Name:	Secret Treasure
+Price:	£26.99
+Stock:	7
+Game Id:	4
+Game Name:	Arena Battler
+Price:	£14.99
+Stock:	8
+Game Id:	5
+Game Name:	Rampage
+Price:	£9.99
+Stock:	4
+Game Id:	6
+Game Name:	World War
+Price:	£12.99
+Stock:	5
+Game Id:	7
+Game Name:	Spies
+Price:	£10.99
+Stock:	4
+Game Id:	8
+Game Name:	R&D
+Price:	£10.99
+Stock:	3
+Game Id:	9
+Game Name:	Squad Commander
+Price:	£24.99
+Stock:	2
+Game Id:	10
+Game Name:	Stranded
+Price:	£9.99
+Stock:	1
 Game added successfully.
+Game added successfully.
+Game added successfully.
+Game is already in basket.
+Invalid command. Type help to see available commands.
+Game not in basket.
+Game removed successfully.
 
 Your basket:
 
-Anno 1701	£8.99
+City Builder	£8.99
+Arena Battler	£14.99
 
-Total: £8.99
+Total: £23.98
+The commands are:
+list:             view stock
+add [game ID]:    add selected game to basket
+remove [game ID]: remove selected game from basket
+basket:           view basket
+purchase:         purchase items in basket
+help:             show available commands
+exit:             leave program
 
 Your order:
 
-Anno 1701	£8.99
+City Builder	£8.99
+Arena Battler	£14.99
 
-Total: £8.99
-
-Thank you for your purchase!
-
-Game added successfully.
-Game added successfully.
-Game not added; game may already be in basket.
-Game added successfully.
-Game added successfully.
-
-Your basket:
-
-Metro 2033	£9.99
-Battlefield 1	£12.99
-Marathon	£9.99
-Anno 1701	£8.99
-
-Total: £41.96
-
-Your order:
-
-Metro 2033	£9.99
-Battlefield 1	£12.99
-Marathon	£9.99
-Anno 1701	£8.99
-
-Total: £41.96
+Total: £23.98
 
 Thank you for your purchase!
 

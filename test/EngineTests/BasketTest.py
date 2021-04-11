@@ -11,9 +11,9 @@ class BasketTest(unittest.TestCase):
     user_input = ConsoleInput(False)
     user_output = TestOutput()
 
-    game = Game({"Game Id": "1", "Game Name": "Anno 1701", "Price": 8.99, "Stock": 4})
-    game2 = Game({"Game Id": "2", "Game Name": "Metro 2033", "Price": 9.99, "Stock": 5})
-    game3 = Game({"Game Id": "3", "Game Name": "Assassin's Creed Brotherhood", "Price": 26.99, "Stock": 7})
+    game = Game({"Game Id": "1", "Game Name": "City Builder", "Price": 8.99, "Stock": 4})
+    game2 = Game({"Game Id": "2", "Game Name": "Survivalist", "Price": 9.99, "Stock": 5})
+    game3 = Game({"Game Id": "3", "Game Name": "Secret Treasure", "Price": 26.99, "Stock": 7})
 
     game_data = GameData(user_input, user_output)
     game_data.gameDataList = [game, game2, game3]
@@ -38,14 +38,14 @@ class BasketTest(unittest.TestCase):
 
     def test_addOutOfStockGameToBasket(self):
         basket = Basket(self.user_input, self.user_output)
-        out_of_stock_game = Game({"Game Id": "1", "Game Name": "Anno 1701", "Price": 8.99, "Stock": 0})
+        out_of_stock_game = Game({"Game Id": "1", "Game Name": "City Builder", "Price": 8.99, "Stock": 0})
         basket_size = len(basket.getBasketList())
         basket.updateBasket(out_of_stock_game, "add")
         self.assertEqual(basket_size, len(basket.getBasketList()))
 
     def test_addOutOfStockGameToBasketOutput(self):
         basket = Basket(self.user_input, self.user_output)
-        out_of_stock_game = Game({"Game Id": "1", "Game Name": "Anno 1701", "Price": 8.99, "Stock": 0})
+        out_of_stock_game = Game({"Game Id": "1", "Game Name": "City Builder", "Price": 8.99, "Stock": 0})
         basket.updateBasket(out_of_stock_game, "add")
         output_message = "Game is out of stock."
         self.assertEqual(output_message, self.user_output.getOutputList()[-1])

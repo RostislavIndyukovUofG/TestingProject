@@ -1,12 +1,12 @@
-b
-a 1
-b
-p
-add 2
-add 6
-add 2
-add 5
+list
 add 1
-b
+add 4
+add 9
+add 9
+remove2
+remove 2
+remove 9
+basket
+help
 p
-e
+exit

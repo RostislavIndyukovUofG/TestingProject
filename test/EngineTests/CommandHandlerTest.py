@@ -11,9 +11,9 @@ class CommandHandlerTest(unittest.TestCase):
     user_input = TestInput()
     user_output = TestOutput()
 
-    game = Game({"Game Id": "1", "Game Name": "Anno 1701", "Price": 8.99, "Stock": 4})
-    game2 = Game({"Game Id": "2", "Game Name": "Metro 2033", "Price": 9.99, "Stock": 5})
-    game3 = Game({"Game Id": "3", "Game Name": "Assassin's Creed Brotherhood", "Price": 26.99, "Stock": 7})
+    game = Game({"Game Id": "1", "Game Name": "City Builder", "Price": 8.99, "Stock": 4})
+    game2 = Game({"Game Id": "2", "Game Name": "Survivalist", "Price": 9.99, "Stock": 5})
+    game3 = Game({"Game Id": "3", "Game Name": "Secret Treasure", "Price": 26.99, "Stock": 7})
 
     game_data = GameData(user_input, user_output)
     game_data.game_data_list = [game, game2, game3]

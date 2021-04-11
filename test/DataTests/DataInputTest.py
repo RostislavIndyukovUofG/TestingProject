@@ -17,7 +17,7 @@ class DataInputTest(unittest.TestCase):
         main.initialiseHelperClasses()
         game_data_list = main.game_data.getGameDataList()
         game_name = game_data_list[0].getGameName()
-        self.assertEqual('Anno 1701', game_name)
+        self.assertEqual('City Builder', game_name)
 
     def test_readDataFromMissingFile(self):
         main = Main(DataInputFile(), self.user_input, self.user_output)
@@ -39,7 +39,7 @@ class DataInputTest(unittest.TestCase):
         main.initialiseHelperClasses()
         game_data_list = main.game_data.getGameDataList()
         game_name = game_data_list[0].getGameName()
-        self.assertEqual("Xbox Video Game", game_name)
+        self.assertEqual("X-Destroyer Video Game", game_name)
 
 
 if __name__ == '__main__':

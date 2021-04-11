@@ -14,8 +14,8 @@ class MainTest(unittest.TestCase):
     main = Main(input_type, user_input, user_output)
 
     data_list = [['GameID', 'Game Name', 'Price', 'Stock'],
-                 ['1', 'Anno 1701', '8.99', '4'],
-                 ['2', 'Metro 2033', '9.99', '5']]
+                 ['1', 'City Builder', '8.99', '4'],
+                 ['2', 'Survivalist', '9.99', '5']]
 
     def test_setGameDataMock(self):
         DataInputStub.getFileData = MagicMock(return_value=self.data_list)
