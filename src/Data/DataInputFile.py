@@ -8,6 +8,7 @@ class DataInputFile(IDataInput):
 
     def readRawData(self, file_path):
         file_data = []
+
         with open(file_path, "r") as file:
             file_reader = csv.reader(file)
 
@@ -18,6 +19,7 @@ class DataInputFile(IDataInput):
 
     def getFileData(self, file_path, user_output):
         file_data = []
+
         try:
             file_data = self.readRawData(file_path)
 

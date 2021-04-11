@@ -28,7 +28,7 @@ class GetFileDataMocksTest(unittest.TestCase):
     def test_getGameDataFromMissingFileMock(self):
         DataInputFile.readRawData = MagicMock(side_effect=FileNotFoundError)
         file_data = self.input_type.getFileData(self.file_path, self.user_output)
-        self.assertEqual(['3', 'PC Video Game', 7.99, 3], file_data[-1])
+        self.assertEqual(['3', 'PC Video Game', '7.99', '3'], file_data[-1])
 
     def test_getGameDataFromMultipleFoundFilesMock(self):
         DataInputFile.readRawData = MagicMock(side_effect=[self.data_list, self.data_list2, self.data_list3])
