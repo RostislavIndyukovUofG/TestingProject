@@ -1,11 +1,10 @@
-list 
-add 3
-add 6
+l
 add 2
-add 8
-b
-remove 2
+a 5
+a 88
+help
+a 3
+a 8
 b
 p
-help
-e
+exit

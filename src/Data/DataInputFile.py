@@ -27,7 +27,7 @@ class DataInputFile(IDataInput):
                 raise Exception
 
         except (FileNotFoundError, Exception):
-            user_output.displayOutput("An error occurred. Switching to stub data.")
+            user_output.displayOutput("An error occurred when reading the file. Switching to stub data.")
             stub = DataInputStub()
             file_data = stub.readRawData(file_path)
         finally:

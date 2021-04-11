@@ -52,37 +52,7 @@ Price:	£9.99
 Stock:	1
 Game added successfully.
 Game added successfully.
-Game added successfully.
-Game added successfully.
-
-Your basket:
-
-Assassin's Creed Brotherhood	£26.99
-Battlefield 1	£12.99
-Metro 2033	£9.99
-Half-Life 2	£10.99
-
-Total: £60.96
-Game removed successfully.
-
-Your basket:
-
-Assassin's Creed Brotherhood	£26.99
-Battlefield 1	£12.99
-Half-Life 2	£10.99
-
-Total: £50.97
-
-Your order:
-
-Assassin's Creed Brotherhood	£26.99
-Battlefield 1	£12.99
-Half-Life 2	£10.99
-
-Total: £50.97
-
-Thank you for your purchase!
-
+Invalid game id. Type list to view the available games.
 The commands are:
 list:             view stock
 add [game ID]:    add selected game to basket
@@ -91,4 +61,27 @@ basket:           view basket
 purchase:         purchase items in basket
 help:             show available commands
 exit:             leave program
+Game added successfully.
+Game added successfully.
+
+Your basket:
+
+Metro 2033	£9.99
+Marathon	£9.99
+Assassin's Creed Brotherhood	£26.99
+Half-Life 2	£10.99
+
+Total: £57.96
+
+Your order:
+
+Metro 2033	£9.99
+Marathon	£9.99
+Assassin's Creed Brotherhood	£26.99
+Half-Life 2	£10.99
+
+Total: £57.96
+
+Thank you for your purchase!
+
 Closing program.
