@@ -11,6 +11,7 @@ class Basket:
 
     def setBasketList(self, basket_list):
         self.basket_list = basket_list
+        self.calculateBasketTotal()
 
     def updateBasket(self, game, operation):
         game_position = self.findGameInBasket(game)
@@ -19,6 +20,8 @@ class Basket:
             self.addToBasket(game_position, game)
         else:
             self.removeFromBasket(game_position, game)
+
+        self.calculateBasketTotal()
 
     def findGameInBasket(self, target_game):
         target_game_id = target_game.getGameId()
@@ -35,7 +38,6 @@ class Basket:
     def addToBasket(self, game_position, game_to_add):
         if game_position < 0 and game_to_add.getStock() > 0:
             self.basket_list.append(game_to_add)
-            self.calcualateBasketTotal()
             self.user_output.displayOutput("Game added successfully.")
         else:
             self.user_output.displayOutput("Game not added; game may already be in basket.")
@@ -43,12 +45,11 @@ class Basket:
     def removeFromBasket(self, game_position, game_to_remove):
         if game_position >= 0:
             self.basket_list.remove(game_to_remove)
-            self.calcualateBasketTotal()
             self.user_output.displayOutput("Game removed successfully.")
         else:
             self.user_output.displayOutput("Game not in basket.")
 
-    def calcualateBasketTotal(self):
+    def calculateBasketTotal(self):
         basket_total = 0.00
 
         for game in self.basket_list:
@@ -67,14 +68,16 @@ class Basket:
 
     def purchaseBasket(self):
         if len(self.basket_list) > 0:
-            self.user_output.displayOutput("\nYour order:\n")
+            self.displayOrder()
 
             for basket_game in self.basket_list:
                 basket_game.reduceStock()
 
-            self.displayBasketGames()
-            self.basket_list = []
-            self.calcualateBasketTotal()
             self.user_output.displayOutput("\nThank you for your purchase!\n")
+            self.setBasketList([])
         else:
             self.user_output.displayOutput("Your basket is emtpy.")
+
+    def displayOrder(self):
+        self.user_output.displayOutput("\nYour order:\n")
+        self.displayBasketGames()

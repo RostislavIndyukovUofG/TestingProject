@@ -1,11 +1,8 @@
-list
+l
 add 1
-a 3
-a 6
-a 2
-a 656456
-help
-remove 2
+add 5
+add 2
 b
+remove 2
 p
-exit
+e

@@ -53,33 +53,22 @@ Stock:	1
 Game added successfully.
 Game added successfully.
 Game added successfully.
-Game added successfully.
-Invalid game id. Type list to view the available games.
-The commands are:
-list:             view stock
-add [game ID]:    add selected game to basket
-remove [game ID]: remove selected game from basket
-basket:           view basket
-purchase:         purchase items in basket
-help:             show available commands
-exit:             leave program
-Game removed successfully.
 
 Your basket:
 
 Anno 1701	£8.99
-Assassin's Creed Brotherhood	£26.99
-Battlefield 1	£12.99
+Marathon	£9.99
+Metro 2033	£9.99
 
-Total: £48.97
+Total: £28.97
+Game removed successfully.
 
 Your order:
 
 Anno 1701	£8.99
-Assassin's Creed Brotherhood	£26.99
-Battlefield 1	£12.99
+Marathon	£9.99
 
-Total: £48.97
+Total: £18.98
 
 Thank you for your purchase!
 
