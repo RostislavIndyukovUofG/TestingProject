@@ -30,6 +30,9 @@ class Main:
         self.setGameData()
         self.command_handler = CommandHandler(self.user_input, self.user_output, self.game_data)
 
+    def setFilePath(self, file_path):
+        self.file_path = file_path
+
     def setGameData(self):
         file_data = self.input_type.getFileData(self.file_path, self.user_output)
         game_data_list = []

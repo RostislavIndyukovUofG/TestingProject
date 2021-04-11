@@ -52,8 +52,8 @@ class Basket:
     def calculateBasketTotal(self):
         basket_total = 0.00
 
-        for game in self.basket_list:
-            basket_total += game.getPrice()
+        for basket_game in self.basket_list:
+            basket_total += basket_game.getPrice()
         self.basket_total = round(basket_total, 2)
 
     def displayBasket(self):
