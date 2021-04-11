@@ -1,6 +1,6 @@
-# TestingProject - Game Store
+# TestingProject - Simple Game Store
 
-This project aims to create a very simple video game store which s accessed using a console interface. The program reads in data about a selection of video games from a local CSV file, which are converted into Game objects.
+This project aims to create a very simple video game store which is accessed using a console interface. The program reads in data about a selection of video games from a local CSV file, which are converted into Game objects.
 
 The user is able to select from a series of commands, including: viewing the store's stock, adding to and removing from a basket, and purchasing the basket.
 
