@@ -8,67 +8,49 @@ purchase:         purchase items in basket
 help:             show available commands
 exit:             leave program
 
-The current games in stock are:
+Your basket:
 
-Game Id:	1
-Game Name:	Anno 1701
-Price:	£8.99
-Stock:	4
-Game Id:	2
-Game Name:	Metro 2033
-Price:	£9.99
-Stock:	5
-Game Id:	3
-Game Name:	Assassin's Creed Brotherhood
-Price:	£26.99
-Stock:	7
-Game Id:	4
-Game Name:	Killer Instinct
-Price:	£14.99
-Stock:	8
-Game Id:	5
-Game Name:	Marathon
-Price:	£9.99
-Stock:	4
-Game Id:	6
-Game Name:	Battlefield 1
-Price:	£12.99
-Stock:	5
-Game Id:	7
-Game Name:	Just Cause 2
-Price:	£10.99
-Stock:	4
-Game Id:	8
-Game Name:	Half-Life 2
-Price:	£10.99
-Stock:	3
-Game Id:	9
-Game Name:	Star Wars Republic Commando
-Price:	£24.99
-Stock:	2
-Game Id:	10
-Game Name:	Halo Wars 2
-Price:	£9.99
-Stock:	1
-Game added successfully.
-Game added successfully.
+
+Total: £0.0
 Game added successfully.
 
 Your basket:
 
 Anno 1701	£8.99
-Marathon	£9.99
-Metro 2033	£9.99
 
-Total: £28.97
-Game removed successfully.
+Total: £8.99
 
 Your order:
 
 Anno 1701	£8.99
-Marathon	£9.99
 
-Total: £18.98
+Total: £8.99
+
+Thank you for your purchase!
+
+Game added successfully.
+Game added successfully.
+Game not added; game may already be in basket.
+Game added successfully.
+Game added successfully.
+
+Your basket:
+
+Metro 2033	£9.99
+Battlefield 1	£12.99
+Marathon	£9.99
+Anno 1701	£8.99
+
+Total: £41.96
+
+Your order:
+
+Metro 2033	£9.99
+Battlefield 1	£12.99
+Marathon	£9.99
+Anno 1701	£8.99
+
+Total: £41.96
 
 Thank you for your purchase!
 

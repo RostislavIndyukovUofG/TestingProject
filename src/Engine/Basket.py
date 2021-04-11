@@ -56,19 +56,16 @@ class Basket:
             basket_total += game.getPrice()
         self.basket_total = round(basket_total, 2)
 
-    def displayBasketGames(self):
+    def displayBasket(self):
         for game in self.basket_list:
             game.displayGame(self.user_output)
 
         self.user_output.displayOutput("\nTotal: £" + str(self.basket_total))
 
-    def displayBasket(self):
-        self.user_output.displayOutput("\nYour basket:\n")
-        self.displayBasketGames()
-
     def purchaseBasket(self):
         if len(self.basket_list) > 0:
-            self.displayOrder()
+            self.user_output.displayOutput("\nYour order:\n")
+            self.displayBasket()
 
             for basket_game in self.basket_list:
                 basket_game.reduceStock()
@@ -77,7 +74,3 @@ class Basket:
             self.setBasketList([])
         else:
             self.user_output.displayOutput("Your basket is emtpy.")
-
-    def displayOrder(self):
-        self.user_output.displayOutput("\nYour order:\n")
-        self.displayBasketGames()

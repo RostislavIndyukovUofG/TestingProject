@@ -39,6 +39,7 @@ class CommandHandler:
                 self.basket.updateBasket(game_to_remove, "remove")
 
             elif operation in UserCommands.BASKET.value[1]:
+                self.user_output.displayOutput("\nYour basket:\n")
                 self.basket.displayBasket()
 
             elif operation in UserCommands.PURCHASE.value[1]:

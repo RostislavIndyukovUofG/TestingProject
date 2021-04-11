@@ -164,19 +164,5 @@ class BasketTest(unittest.TestCase):
         basket.purchaseBasket()
         self.assertEqual("Your basket is emtpy.", self.user_output.output_list[-1])
 
-    # displayOrder
-
-    def test_displayOrder(self):
-        basket = Basket(self.user_input, self.user_output)
-        basket.updateBasket(self.game, "add")
-        basket.updateBasket(self.game2, "add")
-        basket.displayOrder()
-        self.assertEqual("\nTotal: £18.98", self.user_output.output_list[-1])
-
-    def test_displayEmptyOrderOutput(self):
-        basket = Basket(self.user_input, self.user_output)
-        basket.displayOrder()
-        self.assertEqual("\nTotal: £0.0", self.user_output.output_list[-1])
-
 if __name__ == '__main__':
     unittest.main()

@@ -1,8 +1,12 @@
-l
-add 1
-add 5
-add 2
 b
-remove 2
+a 1
+b
+p
+add 2
+add 6
+add 2
+add 5
+add 1
+b
 p
 e
