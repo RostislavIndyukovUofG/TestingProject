@@ -82,8 +82,9 @@ class CommandHandler:
         for command in UserCommands:
             valid_options = command.value[1]
             command_size = command.value[2]
+            user_operation = user_command_list[0]
 
-            user_command_exists = user_command_list[0] in valid_options
+            user_command_exists = user_operation in valid_options
             correct_size = len(user_command_list) == command_size
 
             if user_command_exists and correct_size:
