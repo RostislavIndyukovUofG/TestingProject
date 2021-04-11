@@ -106,19 +106,19 @@ class BasketTest(unittest.TestCase):
 
     # calculateBasketTotal
 
-    def test_CalculateBasketTotal(self):
+    def test_calculateBasketTotal(self):
         basket = Basket(self.user_input, self.user_output)
         basket.updateBasket(self.game, "add")
         basket.updateBasket(self.game2, "add")
         basket.calculateBasketTotal()
         self.assertEqual(18.98, basket.basket_total)
 
-    def test_CalculateEmptyBasketTotal(self):
+    def test_calculateEmptyBasketTotal(self):
         basket = Basket(self.user_input, self.user_output)
         basket.calculateBasketTotal()
         self.assertEqual(0, basket.basket_total)
 
-    def test_CalculateUpdatedBasketTotal(self):
+    def test_calculateUpdatedBasketTotal(self):
         basket = Basket(self.user_input, self.user_output)
         basket.updateBasket(self.game, "add")
         basket.calculateBasketTotal()

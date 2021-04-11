@@ -27,7 +27,6 @@ class CommandHandlerTest(unittest.TestCase):
 
     def test_handleInvalidListCommandOutput(self):
         output_message = "Invalid command. Type help to see available commands."
-
         self.user_input.setInputList(["list 1", "exit"])
         close = self.command_handler.handleUserCommands()
         self.assertEqual(output_message, self.user_output.getOutputList()[-2])
@@ -163,7 +162,7 @@ class CommandHandlerTest(unittest.TestCase):
         close = self.command_handler.handleUserCommands()
         self.assertIn("Closing program.", self.user_output.getOutputList()[-1])
 
-    def test_handleMultipleCommandsWithSpaces(self):
+    def test_handleMultipleCommands(self):
         self.user_input.setInputList(["ad 1", "add 1", " buy", "e"])
         close = self.command_handler.handleUserCommands()
         self.assertIn("Closing program.", self.user_output.getOutputList()[-1])

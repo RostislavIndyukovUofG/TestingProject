@@ -15,7 +15,7 @@ class ConsoleInputTest(unittest.TestCase):
     main.user_input.setInputList(input_list)
     main.user_output.setOutputList(output_list)
 
-    def test_UserInputFaking(self):
+    def test_userInputFaking(self):
         self.main.initialiseHelperClasses()
         self.main.displayInitialMessage()
         close = self.main.command_handler.handleUserCommands()
