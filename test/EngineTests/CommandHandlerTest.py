@@ -102,7 +102,7 @@ class CommandHandlerTest(unittest.TestCase):
     def test_handleValidBasketCommandOutput(self):
         self.user_input.setInputList(["basket", "exit"])
         self.basket.setBasketList([])
-        self.basket.calcualateBasketTotal()
+        self.basket.calculateBasketTotal()
         close = self.command_handler.handleUserCommands()
         self.assertEqual("\nTotal: £0.0", self.user_output.getOutputList()[-2])
 
