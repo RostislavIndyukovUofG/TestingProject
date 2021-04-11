@@ -44,7 +44,7 @@ class Main:
             game_data_list.append(temp_game)
 
         self.game_data = GameData(self.user_input, self.user_output)
-        self.game_data.game_data_list = game_data_list
+        self.game_data.setGameDataList(game_data_list)
 
     def displayInitialMessage(self):
         self.user_output.displayOutput("Welcome to the Game Store.")

@@ -5,6 +5,9 @@ class GameData:
         self.user_output = user_output
         self.game_data_list = []
 
+    def setGameDataList(self, game_data_list):
+        self.game_data_list = game_data_list
+
     def getGameDataList(self):
         return self.game_data_list
 
