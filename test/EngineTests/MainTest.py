@@ -1,5 +1,4 @@
 import unittest
-from unittest.mock import MagicMock
 
 from src.Data.DataInputFile import DataInputFile
 from src.Data.DataInputStub import DataInputStub
