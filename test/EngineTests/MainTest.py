@@ -45,11 +45,6 @@ class MainTest(unittest.TestCase):
         game_name = game_data_list[0].getGameName()
         self.assertEqual("X-Destroyer Video Game", game_name)
 
-    def test_setGameDataFromStubListLength(self):
-        main = Main(DataInputStub(), self.user_input, self.user_output)
-        main.setGameData()
-        self.assertEqual(3, len(main.game_data.getGameDataList()))
-
 
 if __name__ == '__main__':
     unittest.main()
