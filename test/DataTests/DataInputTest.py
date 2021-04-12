@@ -1,13 +1,11 @@
 import unittest
 
-from src.Display.ConsoleInput import ConsoleInput
 from src.Data.DataInputFile import DataInputFile
 from src.Data.DataInputStub import DataInputStub
 from src.Display.TestOutput import TestOutput
 
 
 class DataInputTest(unittest.TestCase):
-    user_input = ConsoleInput(False)
     user_output = TestOutput()
 
     def test_readDataFromFoundFile(self):
