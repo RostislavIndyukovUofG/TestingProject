@@ -14,7 +14,7 @@ class DataInputTest(unittest.TestCase):
     def test_readDataFromFoundFile(self):
         main = Main(DataInputFile(), self.user_input, self.user_output)
         main.setFilePath("../../resources/gameData.csv")
-        main.initialiseHelperClasses()
+        main.setGameData()
         game_data_list = main.game_data.getGameDataList()
         game_name = game_data_list[0].getGameName()
         self.assertEqual('City Builder', game_name)
@@ -22,21 +22,20 @@ class DataInputTest(unittest.TestCase):
     def test_readDataFromMissingFile(self):
         main = Main(DataInputFile(), self.user_input, self.user_output)
         main.setFilePath("missing file")
-        main.initialiseHelperClasses()
+        main.setGameData()
         output_message = "An error occurred when reading the file. Switching to stub data."
         self.assertEqual(output_message, self.user_output.output_list[-1])
 
     def test_readDataFromEmptyFile(self):
         main = Main(DataInputFile(), self.user_input, self.user_output)
         main.setFilePath("../../resources/emptyTestFile.csv")
-        main.initialiseHelperClasses()
+        main.setGameData()
         output_message = "An error occurred when reading the file. Switching to stub data."
         self.assertEqual(output_message, self.user_output.output_list[-1])
 
     def test_readDataFromStub(self):
         main = Main(DataInputStub(), self.user_input, self.user_output)
-        main.setFilePath("")
-        main.initialiseHelperClasses()
+        main.setGameData()
         game_data_list = main.game_data.getGameDataList()
         game_name = game_data_list[0].getGameName()
         self.assertEqual("X-Destroyer Video Game", game_name)
