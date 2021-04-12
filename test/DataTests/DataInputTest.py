@@ -17,10 +17,22 @@ class DataInputTest(unittest.TestCase):
     def test_readDataFromMissingFile(self):
         input_type = DataInputFile()
         file_data = input_type.getFileData("missing file", self.user_output)
+        game_name = file_data[1][1]
+        self.assertEqual("X-Destroyer Video Game", game_name)
+
+    def test_readDataFromMissingFileOutput(self):
+        input_type = DataInputFile()
+        file_data = input_type.getFileData("missing file", self.user_output)
         output_message = "An error occurred when reading the file. Switching to stub data."
         self.assertEqual(output_message, self.user_output.output_list[-1])
 
     def test_readDataFromEmptyFile(self):
+        input_type = DataInputFile()
+        file_data = input_type.getFileData("../../resources/emptyTestFile.csv", self.user_output)
+        game_name = file_data[1][1]
+        self.assertEqual("X-Destroyer Video Game", game_name)
+
+    def test_readDataFromEmptyFileOutput(self):
         input_type = DataInputFile()
         file_data = input_type.getFileData("../../resources/emptyTestFile.csv", self.user_output)
         output_message = "An error occurred when reading the file. Switching to stub data."
